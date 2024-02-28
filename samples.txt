@@ -1,0 +1,2 @@
+SL94881	SL94881_reverse	input1	SL94881_1_val_1.fq.gz
+SL94881	SL94881_reverse	input2	SL94881_2_val_2.fq.gz

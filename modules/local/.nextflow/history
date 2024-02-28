@@ -1,0 +1,6 @@
+2024-01-31 16:40:37	3.1s	pensive_hilbert	ERR	222ef4c4f9371e092193ba73d7d1034b	9007b318-3f52-468b-a04c-2d874521036f	nextflow run gtf_insert.nf
+2024-01-31 16:41:00	2.9s	confident_lamarck	ERR	2bc6e456b3a37e51e29ed33db26c6fae	9e93dc73-a282-4695-9a19-4dc52095ba8a	nextflow run gtf_insert.nf
+2024-01-31 16:41:49	2.5s	nauseous_bohr	ERR	ba32b54a920bcad455576659a18fe8db	b296ede9-fb5f-4f84-8622-1eb9bf95ea71	nextflow run gtf_insert.nf
+2024-01-31 16:42:31	3.2s	backstabbing_ardinghelli	ERR	22d9d34be0195cab310531cf50e1aed9	04557b92-35d7-437b-b05c-c2c3ab7ade2e	nextflow run gtf_insert.nf
+2024-01-31 16:43:14	3.3s	adoring_mayer	ERR	d7ed52ee082b9de7d3bc791814897d5c	4e741946-6330-4f30-b462-18384fbcfc27	nextflow run gtf_insert.nf
+2024-01-31 16:47:34	2m 14s	disturbed_shaw	OK	076a428b75657767330ed03b6b06d538	14e2ac72-f5b4-4f37-9137-eed4f7f7c051	nextflow run gtf_insert.nf
