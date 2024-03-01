@@ -18,7 +18,7 @@ include { UNTAR as UNTAR_SALMON_INDEX       } from '../../modules/nf-core/untar/
 include { CUSTOM_GETCHROMSIZES              } from '../../modules/nf-core/custom/getchromsizes/main'
 include { GFFREAD                           } from '../../modules/nf-core/gffread/main'
 include { BBMAP_BBSPLIT                     } from '../../modules/nf-core/bbmap/bbsplit/main'
-include { STAR_GENOMEGENERATE               } from '../../modules/nf-core/star/genomegenerate/main'
+include { STAR_GENOMEGENERATE               } from '../../modules/local/genomegenerate/main'
 include { HISAT2_EXTRACTSPLICESITES         } from '../../modules/nf-core/hisat2/extractsplicesites/main'
 include { HISAT2_BUILD                      } from '../../modules/nf-core/hisat2/build/main'
 include { SALMON_INDEX                      } from '../../modules/nf-core/salmon/index/main'
@@ -50,6 +50,7 @@ workflow PREPARE_GENOME {
     is_aws_igenome       //   boolean: whether the genome files are from AWS iGenomes
     biotype              //    string: if additional fasta file is provided biotype value to use when appending entries to GTF file
     prepare_tool_indices //      list: tools to prepare indices for
+    size_of_genome       //    string: size of genome being indexed to alloquot the correct amount of computartional resources    
 
 //笔记 When the take keyword is used, the beginning of the workflow body must be identified with the main keyword.
     main:
@@ -103,6 +104,9 @@ workflow PREPARE_GENOME {
         ch_versions = ch_versions.mix(CAT_ADDITIONAL_FASTA.out.versions)
     }
 
+    // add genome size to fasta meta data.
+    ch_fasta.map { fasta -> [ [ genome_size: size_of_genome ], fasta ] }.set { ch_fasta_new }
+    ch_fasta_new.view()
     //
     // Uncompress gene BED annotation file or create from GTF if required
     //
@@ -192,7 +196,7 @@ workflow PREPARE_GENOME {
                 ch_star_index = STAR_GENOMEGENERATE_IGENOMES ( ch_fasta, ch_gtf ).index
                 ch_versions   = ch_versions.mix(STAR_GENOMEGENERATE_IGENOMES.out.versions)
             } else {
-                ch_star_index = STAR_GENOMEGENERATE ( ch_fasta.map { [ [:], it ] }, ch_gtf.map { [ [:], it ] } ).index.map { it[1] }
+                ch_star_index = STAR_GENOMEGENERATE ( ch_fasta_new, ch_gtf.map { [ [:], it ] } ).index.map { it[1] }
                 ch_versions   = ch_versions.mix(STAR_GENOMEGENERATE.out.versions)
             }
         }
@@ -274,4 +278,15 @@ workflow PREPARE_GENOME {
     salmon_index     = ch_salmon_index           // channel: path(salmon/index/)
 
     versions         = ch_versions.ifEmpty(null) // channel: [ versions.yml ]
+}
+
+def create_meta_fasta(ArrayList row, String size) {
+
+    def meta = [:]
+    meta.size = size
+
+    def array = [ meta, row[0] ]
+
+    return array
+
 }
