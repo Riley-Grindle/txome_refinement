@@ -280,13 +280,3 @@ workflow PREPARE_GENOME {
     versions         = ch_versions.ifEmpty(null) // channel: [ versions.yml ]
 }
 
-def create_meta_fasta(ArrayList row, String size) {
-
-    def meta = [:]
-    meta.size = size
-
-    def array = [ meta, row[0] ]
-
-    return array
-
-}
