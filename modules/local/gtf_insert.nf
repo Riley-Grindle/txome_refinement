@@ -14,6 +14,7 @@ process GTF_INSERT {
     tuple val(meta), path(combined_gtf)
     tuple val(meta), path(tracking_file)
     tuple val(meta), path(reference_gtf)
+    tuple val(meta), path(loci_file)
 
     output:
     path("final_annotation.gtf"), emit: final_gtf
@@ -29,9 +30,11 @@ process GTF_INSERT {
     check_unique_keys.py key_value_genes.json
     update_keys.py key_value_genes.json gtf_to_dict_gffcmp.json
     parse_gtf_2_dict_geneid.py $reference_gtf
-    insert_by_start.py updated_gffcmp.json parse_reference_gtf.json
-    json_2_gtf.py overlap_inserted.json
-    find_novel_tscripts.py $combined_gtf overlap_inserted.gtf $tracking_file
+    comb_same_gene_tx.py $combined_gtf updated_gffcmp.json $loci_file
+    insert_by_start.py inserted_overlap_sharing_novels.json parse_reference_gtf.json
+    combine_unioned_genes.py filtered_out_inserted_novels.gtf overlap_inserted.json $loci_file
+    json_2_gtf.py joined_genes_w_spanning_txs.json
+    find_novel_tscripts.py filtered_out_inserted_novels_2.gtf overlap_inserted.gtf key_value_genes.json
     """
 }
 

@@ -2,7 +2,7 @@
 // Alignment with STAR
 //
 
-include { STAR_ALIGN          } from '../../modules/local/align/main'
+include { STAR_ALIGN          } from '../../modules/nf-core/star/align/main'
 include { STAR_ALIGN_IGENOMES } from '../../modules/local/star_align_igenomes'
 include { BAM_SORT_STATS_SAMTOOLS } from '../nf-core/bam_sort_stats_samtools/main'
 

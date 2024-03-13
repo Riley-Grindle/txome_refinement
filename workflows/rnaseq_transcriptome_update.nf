@@ -217,7 +217,8 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
         params.gencode,
         is_aws_igenome,
         biotype,
-        prepareToolIndices
+        prepareToolIndices,
+        params.genome_size
     )
     ch_versions = ch_versions.mix(PREPARE_GENOME.out.versions)
 
@@ -574,6 +575,7 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
         ch_gffcompare_gtf,
         GFFCOMPARE.out.tracking,
         ch_reference_gtf
+        GFFCOMPARE.out.loci
 
     )
     

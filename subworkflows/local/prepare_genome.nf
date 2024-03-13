@@ -18,7 +18,7 @@ include { UNTAR as UNTAR_SALMON_INDEX       } from '../../modules/nf-core/untar/
 include { CUSTOM_GETCHROMSIZES              } from '../../modules/nf-core/custom/getchromsizes/main'
 include { GFFREAD                           } from '../../modules/nf-core/gffread/main'
 include { BBMAP_BBSPLIT                     } from '../../modules/nf-core/bbmap/bbsplit/main'
-include { STAR_GENOMEGENERATE               } from '../../modules/local/genomegenerate/main'
+include { STAR_GENOMEGENERATE               } from '../../modules/nf-core/star/genomegenerate/main'
 include { HISAT2_EXTRACTSPLICESITES         } from '../../modules/nf-core/hisat2/extractsplicesites/main'
 include { HISAT2_BUILD                      } from '../../modules/nf-core/hisat2/build/main'
 include { SALMON_INDEX                      } from '../../modules/nf-core/salmon/index/main'
@@ -196,7 +196,7 @@ workflow PREPARE_GENOME {
                 ch_star_index = STAR_GENOMEGENERATE_IGENOMES ( ch_fasta, ch_gtf ).index
                 ch_versions   = ch_versions.mix(STAR_GENOMEGENERATE_IGENOMES.out.versions)
             } else {
-                ch_star_index = STAR_GENOMEGENERATE ( ch_fasta_new, ch_gtf.map { [ [:], it ] } ).index.map { it[1] }
+                ch_star_index = STAR_GENOMEGENERATE ( ch_fasta.map { [ [:], it ] }, ch_gtf.map { [ [:], it ] } ).index.map { it[1] }
                 ch_versions   = ch_versions.mix(STAR_GENOMEGENERATE.out.versions)
             }
         }
