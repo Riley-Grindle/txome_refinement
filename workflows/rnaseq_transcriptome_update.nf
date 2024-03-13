@@ -574,7 +574,7 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
     ch_new_gtf = GTF_INSERT(
         ch_gffcompare_gtf,
         GFFCOMPARE.out.tracking,
-        ch_reference_gtf
+        ch_reference_gtf,
         GFFCOMPARE.out.loci
 
     )
