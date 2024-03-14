@@ -266,24 +266,19 @@
     ],
     "properties": {
         "single_end_sample": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "double_end_sample": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_bamsifter": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_samtools_merge": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "splicesites": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "gtf_extra_attributes": {
             "type": "string",
@@ -302,24 +297,20 @@
             "default": "gene_biotype"
         },
         "gencode": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "save_reference": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "igenomes_base": {
             "type": "string",
             "default": "s3://ngi-igenomes/igenomes"
         },
         "with_umi": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_umi_extract": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "umitools_extract_method": {
             "type": "string",
@@ -330,28 +321,22 @@
             "default": "directional"
         },
         "umitools_dedup_stats": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "umitools_bc_pattern": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "umitools_bc_pattern2": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "umitools_umi_separator": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "umi_discard_read": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "save_umi_intermeds": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "trimmer": {
             "type": "string",
@@ -362,40 +347,32 @@
             "default": 10000
         },
         "extra_trimgalore_args": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "extra_fastp_args": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "save_trimmed": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_trimming": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "bbsplit_fasta_list": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "save_bbsplit_reads": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_bbsplit": {
-            "type": "string",
-            "default": "true"
+            "type": "boolean",
+            "default": true
         },
         "remove_ribo_rna": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "save_non_ribo_reads": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "ribo_database_manifest": {
             "type": "string",
@@ -406,84 +383,68 @@
             "default": "star_salmon"
         },
         "genome_size": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "pseudo_aligner": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "seq_center": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "bam_csi_index": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "star_ignore_sjdbgtf": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "salmon_quant_libtype": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "hisat2_build_memory": {
             "type": "string",
             "default": "200.GB"
         },
         "stringtie_ignore_gtf": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "stringtie_merge": {
-            "type": "string",
-            "default": "true"
+            "type": "boolean",
+            "default": true
         },
         "min_mapped_reads": {
             "type": "integer",
             "default": 5
         },
         "extra_star_align_args": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "extra_salmon_quant_args": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "save_merged_fastq": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "save_unaligned": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "save_align_intermeds": {
-            "type": "string",
-            "default": "true"
+            "type": "boolean",
+            "default": true
         },
         "skip_markduplicates": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_alignment": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_pseudo_alignment": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "transcript_id_prefix_gffcompare": {
-            "type": "string",
-            "default": "MDIBLv00001"
+            "type": "string"
         },
         "onlyOneInputSample": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "overlapClassCodes": {
             "type": "string",
@@ -494,76 +455,62 @@
             "default": "['r', 'u', 'i', 'y', 'p']"
         },
         "alignment_mode": {
-            "type": "string",
-            "default": ""
+            "type": "string"
         },
         "lib_type": {
-            "type": "string",
-            "default": ""
+            "type": "string"
         },
         "minimum_read_coverage_quantity": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "minimum_read_coverage_threshold": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "skip_qc": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_bigwig": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_stringtie": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_fastqc": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_preseq": {
-            "type": "string",
-            "default": "true"
+            "type": "boolean",
+            "default": true
         },
         "skip_dupradar": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_qualimap": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_rseqc": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_biotype_qc": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_deseq2_qc": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "skip_multiqc": {
-            "type": "string",
-            "default": "true"
+            "type": "boolean",
+            "default": true
         },
         "deseq2_vst": {
-            "type": "string",
-            "default": "true"
+            "type": "boolean",
+            "default": true
         },
         "rseqc_modules": {
             "type": "string",
             "default": "bam_stat,inner_distance,infer_experiment,junction_annotation,junction_saturation,read_distribution,read_duplication"
         },
         "show_hidden_params": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "schema_ignore_params": {
             "type": "string",
@@ -574,44 +521,34 @@
             "default": "https://raw.githubusercontent.com/nf-core/test-datasets/rnaseq3"
         },
         "transcript_fasta": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "additional_fasta": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "gtf": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "gff": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "gene_bed": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "bbsplit_index": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "star_index": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "hisat2_index": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "rsem_index": {
-            "type": "string",
-            "default": null
+            "type": "string"
         },
         "salmon_index": {
-            "type": "string",
-            "default": null
+            "type": "string"
         }
     }
 }
