@@ -551,12 +551,13 @@
             "type": "string"
         },
         "validationLenientMode": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
         },
         "validationShowHiddenParams": {
-            "type": "string",
-            "default": "false"
+            "type": "boolean"
+        },
+        "validationFailUnrecognisedParams": {
+            "type": "boolean"
         }
     }
 }
