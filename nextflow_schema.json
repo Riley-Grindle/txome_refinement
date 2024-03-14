@@ -446,14 +446,6 @@
         "onlyOneInputSample": {
             "type": "boolean"
         },
-        "overlapClassCodes": {
-            "type": "string",
-            "default": "['k', 'm', 'n', 'j', 'e']"
-        },
-        "novelClassCodes": {
-            "type": "string",
-            "default": "['r', 'u', 'i', 'y', 'p']"
-        },
         "alignment_mode": {
             "type": "string"
         },
