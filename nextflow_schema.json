@@ -549,6 +549,14 @@
         },
         "salmon_index": {
             "type": "string"
+        },
+        "validationLenientMode": {
+            "type": "string",
+            "default": "false"
+        },
+        "validationShowHiddenParams": {
+            "type": "string",
+            "default": "false"
         }
     }
 }
