@@ -34,7 +34,7 @@ include { STAR_GENOMEGENERATE_IGENOMES         } from '../../modules/local/star_
 workflow PREPARE_GENOME {
     take:
     fasta                //      file: /path/to/genome.fasta
-    gtf                  //      file: /path/to/genome.gtf
+    gtf                  //      channel: [ gtf ]
     gff                  //      file: /path/to/genome.gff
     additional_fasta     //      file: /path/to/additional.fasta
     transcript_fasta     //      file: /path/to/transcript.fasta
@@ -70,14 +70,7 @@ workflow PREPARE_GENOME {
     //
     // Uncompress GTF annotation file or create from GFF3 if required
     //
-    if (gtf) {
-        if (gtf.endsWith('.gz')) {
-            ch_gtf      = GUNZIP_GTF ( [ [:], gtf ] ).gunzip.map { it[1] }
-            ch_versions = ch_versions.mix(GUNZIP_GTF.out.versions)
-        } else {
-            ch_gtf = Channel.value(file(gtf))
-        }
-    } else if (gff) {
+    if (gff) {
         if (gff.endsWith('.gz')) {
             ch_gff      = GUNZIP_GFF ( [ [:], gff ] ).gunzip.map { it[1] }
             ch_versions = ch_versions.mix(GUNZIP_GFF.out.versions)
@@ -98,7 +91,7 @@ workflow PREPARE_GENOME {
         } else {
             ch_add_fasta = Channel.value(file(additional_fasta))
         }
-        CAT_ADDITIONAL_FASTA ( ch_fasta, ch_gtf, ch_add_fasta, biotype )
+        CAT_ADDITIONAL_FASTA ( ch_fasta, gtf, ch_add_fasta, biotype )
         ch_fasta    = CAT_ADDITIONAL_FASTA.out.fasta
         ch_gtf      = CAT_ADDITIONAL_FASTA.out.gtf
         ch_versions = ch_versions.mix(CAT_ADDITIONAL_FASTA.out.versions)
@@ -118,7 +111,7 @@ workflow PREPARE_GENOME {
             ch_gene_bed = Channel.value(file(gene_bed))
         }
     } else {
-        ch_gene_bed = GTF2BED ( ch_gtf ).bed
+        ch_gene_bed = GTF2BED ( gtf ).bed
         ch_versions = ch_versions.mix(GTF2BED.out.versions)
     }
 
@@ -138,7 +131,7 @@ workflow PREPARE_GENOME {
             ch_versions         = ch_versions.mix(PREPROCESS_TRANSCRIPTS_FASTA_GENCODE.out.versions)
         }
     } else {
-        ch_filter_gtf = GTF_GENE_FILTER ( ch_fasta, ch_gtf ).gtf
+        ch_filter_gtf = GTF_GENE_FILTER ( ch_fasta, gtf ).gtf
         ch_transcript_fasta = MAKE_TRANSCRIPTS_FASTA ( ch_fasta, ch_filter_gtf ).transcript_fasta
         ch_versions         = ch_versions.mix(GTF_GENE_FILTER.out.versions)
         ch_versions         = ch_versions.mix(MAKE_TRANSCRIPTS_FASTA.out.versions)
@@ -193,10 +186,10 @@ workflow PREPARE_GENOME {
             }
         } else {
             if (is_aws_igenome) {
-                ch_star_index = STAR_GENOMEGENERATE_IGENOMES ( ch_fasta, ch_gtf ).index
+                ch_star_index = STAR_GENOMEGENERATE_IGENOMES ( ch_fasta, gtf ).index
                 ch_versions   = ch_versions.mix(STAR_GENOMEGENERATE_IGENOMES.out.versions)
             } else {
-                ch_star_index = STAR_GENOMEGENERATE ( ch_fasta.map { [ [:], it ] }, ch_gtf.map { [ [:], it ] } ).index.map { it[1] }
+                ch_star_index = STAR_GENOMEGENERATE ( ch_fasta.map { [ [:], it ] }, gtf.map { [ [:], it ] } ).index.map { it[1] }
                 ch_versions   = ch_versions.mix(STAR_GENOMEGENERATE.out.versions)
             }
         }
@@ -215,7 +208,7 @@ workflow PREPARE_GENOME {
                 ch_rsem_index = Channel.value(file(rsem_index))
             }
         } else {
-            ch_rsem_index = RSEM_PREPAREREFERENCE_GENOME ( ch_fasta, ch_gtf ).index
+            ch_rsem_index = RSEM_PREPAREREFERENCE_GENOME ( ch_fasta, gtf ).index
             ch_versions   = ch_versions.mix(RSEM_PREPAREREFERENCE_GENOME.out.versions)
         }
     }
@@ -227,7 +220,7 @@ workflow PREPARE_GENOME {
     ch_hisat2_index = Channel.empty()
     if ('hisat2' in prepare_tool_indices) {
         if (!splicesites) {
-            ch_splicesites = HISAT2_EXTRACTSPLICESITES ( ch_gtf.map { [ [:], it ] } ).txt.map { it[1] }
+            ch_splicesites = HISAT2_EXTRACTSPLICESITES ( gtf.map { [ [:], it ] } ).txt.map { it[1] }
             ch_versions    = ch_versions.mix(HISAT2_EXTRACTSPLICESITES.out.versions)
         } else {
             ch_splicesites = Channel.value(file(splicesites))
@@ -240,7 +233,7 @@ workflow PREPARE_GENOME {
                 ch_hisat2_index = Channel.value(file(hisat2_index))
             }
         } else {
-            ch_hisat2_index = HISAT2_BUILD ( ch_fasta.map { [ [:], it ] }, ch_gtf.map { [ [:], it ] }, ch_splicesites.map { [ [:], it ] } ).index.map { it[1] }
+            ch_hisat2_index = HISAT2_BUILD ( ch_fasta.map { [ [:], it ] }, gtf.map { [ [:], it ] }, ch_splicesites.map { [ [:], it ] } ).index.map { it[1] }
             ch_versions     = ch_versions.mix(HISAT2_BUILD.out.versions)
         }
     }
@@ -265,7 +258,7 @@ workflow PREPARE_GENOME {
 
     emit:
     fasta            = ch_fasta                  // channel: path(genome.fasta)
-    gtf              = ch_gtf                    // channel: path(genome.gtf)
+    gtf              = gtf                       // channel: path(genome.gtf)
     fai              = ch_fai                    // channel: path(genome.fai)
     gene_bed         = ch_gene_bed               // channel: path(gene.bed)
     transcript_fasta = ch_transcript_fasta       // channel: path(transcript.fasta)

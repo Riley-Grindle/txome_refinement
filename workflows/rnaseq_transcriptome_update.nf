@@ -112,6 +112,7 @@ include { BAMSIFTER  } from '../modules/local/bamsifter.nf'
 include { BAMSIFTER as BAMSIFTER_NORMALIZATION_MERGED_BAM} from '../modules/local/bamsifter.nf'
 include { SAMTOOLS_MERGE } from '../modules/local/samtools_merge.nf'
 include { ASSIGN_STRAND_AFTER_STRINGTIE  } from '../modules/local/assignstrandafterstringtie.nf'
+include { AGAT_CONVERTSPGXF2GXF } from '../modules/local/convertspgxf2gxf/main'
 
 // include { TRINITY_NORMALIZATION as TRINITY_NORMALIZATION_PARALLEL_DoubleEnd} from '../modules/local/trinity.nf'
 // include { TRINITY_NORMALIZATION as TRINITY_NORMALIZATION_PARALLEL_SingleEnd} from '../modules/local/trinity.nf'
@@ -195,14 +196,21 @@ def pass_strand_check  = [:]
 workflow RNASEQ_TRANSCRIPTOME_UPDATE {
 
     ch_versions = Channel.empty()
+    
+    //
+    // MODULE: Standardize formatting of input gtf
+    //
+    AGAT_CONVERTSPGXF2GXF([[:], params.gtf])
+    ch_formatted_gtf = AGAT_CONVERTSPGXF2GXF.out.output_gtf    
 
     //
     // SUBWORKFLOW: Uncompress and prepare reference genome files
     //
     def biotype = params.gencode ? "gene_type" : params.featurecounts_group_type
+    
     PREPARE_GENOME (
         params.fasta,
-        params.gtf,
+        ch_formatted_gtf,
         params.gff,
         params.additional_fasta,
         params.transcript_fasta,
@@ -221,7 +229,7 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
         params.genome_size
     )
     ch_versions = ch_versions.mix(PREPARE_GENOME.out.versions)
-
+    
     // Check if contigs in genome fasta file > 512 Mbp
     if (!params.skip_alignment && !params.bam_csi_index) {
         PREPARE_GENOME
