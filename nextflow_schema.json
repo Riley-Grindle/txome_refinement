@@ -550,6 +550,14 @@
         },
         "validationFailUnrecognisedParams": {
             "type": "boolean"
+        },
+        "skip_agat": {
+            "type": "boolean",
+            "default": true
+        },
+        "gene_prefix": {
+            "type": "string",
+            "default": null
         }
     }
 }

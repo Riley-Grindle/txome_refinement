@@ -200,8 +200,14 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     //
     // MODULE: Standardize formatting of input gtf
     //
-    AGAT_CONVERTSPGXF2GXF([[:], params.gtf])
-    ch_formatted_gtf = AGAT_CONVERTSPGXF2GXF.out.output_gtf    
+    if (!params.skip_agat) {
+
+        AGAT_CONVERTSPGXF2GXF([[:], params.gtf])
+        ch_formatted_gtf = AGAT_CONVERTSPGXF2GXF.out.output_gtf    
+    
+    } else {
+        ch_formatted_gtf = Channel.of(params.gtf)
+    }
 
     //
     // SUBWORKFLOW: Uncompress and prepare reference genome files
