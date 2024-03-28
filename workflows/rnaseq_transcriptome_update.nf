@@ -216,7 +216,7 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     
     PREPARE_GENOME (
         params.fasta,
-        ch_formatted_gtf,
+        ch_formatted_gtf.first(),
         params.gff,
         params.additional_fasta,
         params.transcript_fasta,
