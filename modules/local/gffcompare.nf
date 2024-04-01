@@ -28,6 +28,7 @@ process GFFCOMPARE {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def super_loc = task.ext.args2 ?: ''
     def ref_fasta = fasta ? "-s ${fasta}" : ''
     def ref_gtf = reference_gtf ? "-r ${reference_gtf}" : ''
     """
@@ -37,6 +38,12 @@ process GFFCOMPARE {
         $ref_gtf \\
         -A -K -o $prefix \\
         $gtfs
+
+    if [ $super_loc != '' ]; then
+        sed 's/XLOC/$super_loc/g' ${meta.id}.combined.gtf
+        sed 's/XLOC/$super_loc/g' ${meta.id}.loci
+        sed 's/XLOC/$super_loc/g' ${meta.id}.tracking
+    fi
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
