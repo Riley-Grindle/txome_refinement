@@ -500,7 +500,7 @@ if(!params.skip_bamsifter) {
         .flatMap()
         .map { item ->
             if(item instanceof Map) {
-                item['id'] = 'all_double'
+                item['id'] = 'merged'
                 return item
             } else {
                 return item
