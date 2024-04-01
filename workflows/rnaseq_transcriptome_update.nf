@@ -494,9 +494,9 @@ if (params.single_end_sample) {
 
 
 if(!params.skip_bamsifter) {
-    ch_bamstifer = BAMSIFTER(ch_genome_bam).normalized_bam.collect()
+    ch_bamsifter = BAMSIFTER(ch_genome_bam).normalized_bam.collect()
 
-    ch_bamstifer
+    ch_bamsifter
         .flatMap()
         .map { item ->
             if(item instanceof Map) {
@@ -511,11 +511,11 @@ if(!params.skip_bamsifter) {
         .map { meta, fastq ->
             [ meta, fastq.flatten() ]
         }
-        .set{ ch_bamstifer_ready_samtools_merged }
-        ch_bamstifer_ready_samtools_merged.view{ "Ready for Samtools_Merge  Meta: ${it[0]}, Path: ${it[1]}" }
+        .set{ ch_bamsifter_ready_samtools_merged }
+        ch_bamsifter_ready_samtools_merged.view{ "Ready for Samtools_Merge  Meta: ${it[0]}, Path: ${it[1]}" }
 
     // use BAMSIFTER to normalize the bam files in parallel.
-    SAMTOOLS_MERGE(ch_bamstifer_ready_samtools_merged,
+    SAMTOOLS_MERGE(ch_bamsifter_ready_samtools_merged,
         PREPARE_GENOME.out.fasta.map { [ [:], it ] },
         PREPARE_GENOME.out.fai.map { [ [:], it ] }
     )
