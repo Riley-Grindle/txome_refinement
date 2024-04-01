@@ -113,6 +113,7 @@ include { BAMSIFTER as BAMSIFTER_NORMALIZATION_MERGED_BAM} from '../modules/loca
 include { SAMTOOLS_MERGE } from '../modules/local/samtools_merge.nf'
 include { ASSIGN_STRAND_AFTER_STRINGTIE  } from '../modules/local/assignstrandafterstringtie.nf'
 include { AGAT_CONVERTSPGXF2GXF } from '../modules/local/convertspgxf2gxf/main'
+include { AGAT_CONVERTSPGXF2GXF as GTF_FINAL_FORMATTING } from '../modules/local/convertspgxf2gxf/main'
 
 // include { TRINITY_NORMALIZATION as TRINITY_NORMALIZATION_PARALLEL_DoubleEnd} from '../modules/local/trinity.nf'
 // include { TRINITY_NORMALIZATION as TRINITY_NORMALIZATION_PARALLEL_SingleEnd} from '../modules/local/trinity.nf'
@@ -540,10 +541,6 @@ ch_versions = ch_versions.mix(SAMTOOLS_MERGE.out.versions.first())
     ch_genome_bam.view{ "Ready for StringTie  Meta: ${it[0]}, Path: ${it[1]}" }}
 
 
-
-
-
-
     //
     // MODULE: STRINGTIE_STRINGTIE
     //
@@ -593,11 +590,11 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
 
     )
     
-    // Run samples through salmon quant on updated gtf
-    //SALMON_INDEX_FINAL(
-        //params.fasta, 
-        //ch_new_gtf.first()
-    //)
+    if (!params.skip_agat) {
+        ch_final_gtf = GTF_FINAL_FORMATTING([[:], ch_new_gtf]).out.output_gtf
+    } else {
+        ch_new_gtf.set { ch_final_gtf }
+    }
 
     if ((params.fasta).endsWith('.gz')) {
         ch_fasta_salmon    = GUNZIP_FASTA ( [ [:], params.fasta ] ).gunzip.map { it[1] }
@@ -607,7 +604,7 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
     }
 
 
-    MAKE_TRANSCRIPTS_FASTA( ch_fasta_salmon, ch_new_gtf )
+    MAKE_TRANSCRIPTS_FASTA( ch_fasta_salmon, ch_final_gtf )
     ch_versions         = ch_versions.mix(MAKE_TRANSCRIPTS_FASTA.out.versions)
 
     SALMON_INDEX_FINAL(ch_fasta_salmon, MAKE_TRANSCRIPTS_FASTA.out.transcript_fasta)
@@ -620,7 +617,7 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
         ch_strand_fastq.auto_strand,
         ch_index.first(),
         ch_new_tx.first(),
-        ch_new_gtf.first(),
+        ch_final_gtf.first(),
         params.alignment_mode, 
         params.lib_type
     )    
