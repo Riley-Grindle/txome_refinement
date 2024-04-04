@@ -607,7 +607,7 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
 
 
     MAKE_TRANSCRIPTS_FASTA_POST( ch_fasta_salmon, ch_final_gtf )
-    ch_versions         = ch_versions.mix(MAKE_TRANSCRIPTS_FASTA.out.versions)
+    ch_versions         = ch_versions.mix(MAKE_TRANSCRIPTS_FASTA_POST.out.versions)
 
     SALMON_INDEX_FINAL(ch_fasta_salmon, MAKE_TRANSCRIPTS_FASTA_POST.out.transcript_fasta)
     ch_versions         = ch_versions.mix(SALMON_INDEX_FINAL.out.versions)    
