@@ -19,6 +19,7 @@ process SALMON_TX2GENE {
     task.ext.when == null || task.ext.when
 
     script: // This script is bundled with the pipeline, in nf-core/rnaseq/bin/
+    def args = task.ext.args ?: ''
     """
     salmon_tx2gene.py \\
         --gtf $gtf \\
@@ -26,6 +27,8 @@ process SALMON_TX2GENE {
         --id $params.gtf_group_features \\
         --extra $params.gtf_extra_attributes \\
         -o salmon_tx2gene.tsv
+
+    mv salmon_tx2gene.tsv ${args}.salmon_tx2gene.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

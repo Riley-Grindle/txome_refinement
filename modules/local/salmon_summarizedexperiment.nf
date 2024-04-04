@@ -20,12 +20,17 @@ process SALMON_SUMMARIZEDEXPERIMENT {
     task.ext.when == null || task.ext.when
 
     script: // This script is bundled with the pipeline, in nf-core/rnaseq/bin/
+    def args = task.ext.args ?: ''
     """
     salmon_summarizedexperiment.r \\
         NULL \\
         $counts \\
         $tpm
-
+    
+    for file in "*.rds"; do
+        mv "\$file" ${args}.\${file}
+    done
+ 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         r-base: \$(echo \$(R --version 2>&1) | sed 's/^.*R version //; s/ .*\$//')
