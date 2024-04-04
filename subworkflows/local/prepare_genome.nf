@@ -23,7 +23,7 @@ include { HISAT2_EXTRACTSPLICESITES         } from '../../modules/nf-core/hisat2
 include { HISAT2_BUILD                      } from '../../modules/nf-core/hisat2/build/main'
 include { SALMON_INDEX                      } from '../../modules/nf-core/salmon/index/main'
 include { RSEM_PREPAREREFERENCE as RSEM_PREPAREREFERENCE_GENOME } from '../../modules/nf-core/rsem/preparereference/main'
-include { RSEM_PREPAREREFERENCE as MAKE_TRANSCRIPTS_FASTA       } from '../../modules/nf-core/rsem/preparereference/main'
+include { RSEM_PREPAREREFERENCE as MAKE_TRANSCRIPTS_FASTA       } from '../../modules/local/preparegenome/main'
 
 include { PREPROCESS_TRANSCRIPTS_FASTA_GENCODE } from '../../modules/local/preprocess_transcripts_fasta_gencode'
 include { GTF2BED                              } from '../../modules/local/gtf2bed'
