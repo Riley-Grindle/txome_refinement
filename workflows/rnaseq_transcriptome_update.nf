@@ -162,7 +162,8 @@ include { SORTMERNA                   } from '../modules/nf-core/sortmerna/main'
 include { STRINGTIE_STRINGTIE         } from '../modules/nf-core/stringtie/stringtie/main'
 include { SUBREAD_FEATURECOUNTS       } from '../modules/nf-core/subread/featurecounts/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
-include { RSEM_PREPAREREFERENCE as MAKE_TRANSCRIPTS_FASTA	} from '../modules/nf-core/rsem/preparereference/main'
+include { RSEM_PREPAREREFERENCE as MAKE_TRANSCRIPTS_FASTA	} from '../modules/local/preparereference/main'
+include { RSEM_PREPAREREFERENCE as MAKE_TRANSCRIPTS_FASTA_POST       } from '../modules/local/preparereference/main'
 include { SALMON_INDEX as SALMON_INDEX_FINAL	  } from '../modules/nf-core/salmon/index/main'
 include { GUNZIP as GUNZIP_FASTA            } from '../modules/nf-core/gunzip/main'
 
@@ -501,7 +502,7 @@ if(!params.skip_bamsifter) {
         .flatMap()
         .map { item ->
             if(item instanceof Map) {
-                item['id'] = 'merged'
+                item['id'] = params.gene_tx_prefix
                 return item
             } else {
                 return item
@@ -605,7 +606,7 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
     }
 
 
-    MAKE_TRANSCRIPTS_FASTA( ch_fasta_salmon, ch_final_gtf )
+    MAKE_TRANSCRIPTS_FASTA_POST( ch_fasta_salmon, ch_final_gtf )
     ch_versions         = ch_versions.mix(MAKE_TRANSCRIPTS_FASTA.out.versions)
 
     SALMON_INDEX_FINAL(ch_fasta_salmon, MAKE_TRANSCRIPTS_FASTA.out.transcript_fasta)

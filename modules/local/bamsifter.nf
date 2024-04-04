@@ -28,7 +28,7 @@ process BAMSIFTER {
     """
     /usr/local/src/CTAT-VirusIntegrationFinder/util/bamsifter/bamsifter \\
             -c ${normalize_max_read_cov} \\
-            -o ${prefix}.mergedAll.bam \\
+            -o ${prefix}.${args}sifted.bam \\
             ${alignment_bam}
     """
 

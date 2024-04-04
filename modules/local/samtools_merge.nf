@@ -35,7 +35,7 @@ process SAMTOOLS_MERGE {
         -f --threads ${task.cpus-1} \\
         $args \\
         ${reference} \\
-        ${prefix}.${file_type} \\
+        ${prefix}.merged.${file_type} \\
         $input_files
 
     cat <<-END_VERSIONS > versions.yml
