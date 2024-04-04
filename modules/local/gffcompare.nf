@@ -40,10 +40,12 @@ process GFFCOMPARE {
         $gtfs
 
     if [ $super_loc != '' ]; then
-        sed 's/XLOC/$super_loc/g' ${meta.id}.combined.gtf
-        sed 's/XLOC/$super_loc/g' ${meta.id}.loci
-        sed 's/XLOC/$super_loc/g' ${meta.id}.tracking
+        sed -i.bak 's/XLOC/$super_loc/g' ${meta.id}.combined.gtf
+        sed -i.bak 's/XLOC/$super_loc/g' ${meta.id}.loci
+        sed -i.bak 's/XLOC/$super_loc/g' ${meta.id}.tracking
     fi
+    
+    rm *.bak
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
