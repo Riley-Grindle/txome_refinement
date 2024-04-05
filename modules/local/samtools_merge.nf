@@ -15,8 +15,8 @@ process SAMTOOLS_MERGE {
     tuple val(meta3), path(fai)
 
     output:
-    tuple val(meta), path("${prefix}.bam") , optional:true, emit: bam
-    tuple val(meta), path("${prefix}.cram"), optional:true, emit: cram
+    tuple val(meta), path("${prefix}.merged.bam") , optional:true, emit: bam
+    tuple val(meta), path("${prefix}.merged.cram"), optional:true, emit: cram
     tuple val(meta), path("*.csi")         , optional:true, emit: csi
     path  "versions.yml"                                  , emit: versions
 
