@@ -16,7 +16,7 @@ process SALMON_QUANT {
     val   lib_type
 
     output:
-    tuple val(meta), path("${args2}.${prefix}") , emit: results
+    tuple val(meta), path("*.${prefix}") , emit: results
     tuple val(meta), path("*info.json"), emit: json_info, optional: true
     path  "versions.yml"               , emit: versions
 
