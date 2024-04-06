@@ -23,6 +23,7 @@ process SALMON_TXIMPORT {
     task.ext.when == null || task.ext.when
 
     script: // This script is bundled with the pipeline, in nf-core/rnaseq/bin/
+    def args = task.ext.args ?: ''
     """
     salmon_tximport.r \\
         NULL \\
