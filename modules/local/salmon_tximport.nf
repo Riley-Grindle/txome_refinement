@@ -29,6 +29,7 @@ process SALMON_TXIMPORT {
         NULL \\
         salmon \\
         salmon.merged
+        $tx2gene
 
     for file in "*.tsv"; do
         mv "\$file" ${args}.\${file}
