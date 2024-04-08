@@ -13,7 +13,7 @@ path = args[2]
 sample_name = args[3]
 
 prefix = sample_name
-tx2gene = "salmon_tx2gene.tsv"
+tx2gene = args[4]
 info = file.info(tx2gene)
 if (info$size == 0) {
     tx2gene = NULL
