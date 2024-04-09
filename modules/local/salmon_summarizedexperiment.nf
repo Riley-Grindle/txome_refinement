@@ -25,9 +25,13 @@ process SALMON_SUMMARIZEDEXPERIMENT {
     salmon_summarizedexperiment.r \\
         NULL \\
         $counts \\
-        $tpm
+        $tpm \\
+        $tx2gene
     
-    for file in "*.rds"; do
+    for file in *.rds; do
+        mv "\$file" ${args}.\${file}
+    done
+    for file in *.tsv; do
         mv "\$file" ${args}.\${file}
     done
  

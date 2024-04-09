@@ -13,7 +13,7 @@ coldata <- args[1]
 counts_fn <- args[2]
 tpm_fn <- args[3]
 
-tx2gene <- "salmon_tx2gene.tsv"
+tx2gene <- args[4]
 info <- file.info(tx2gene)
 if (info$size == 0) {
     tx2gene <- NULL
