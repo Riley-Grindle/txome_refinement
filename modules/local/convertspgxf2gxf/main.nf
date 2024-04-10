@@ -7,7 +7,7 @@ process AGAT_CONVERTSPGXF2GXF {
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/agat:1.0.0--pl5321hdfd78af_0' :
-        'biocontainers/agat:1.3.3--pl5321hdfd78af_0' }"
+        'biocontainers/agat:1.4.0--pl5321hdfd78af_0' }"
 
     input:
     tuple val(meta), path(gtf)
