@@ -27,13 +27,6 @@ process SALMON_SUMMARIZEDEXPERIMENT {
         $counts \\
         $tpm \\
         $tx2gene
-    
-    for file in *.rds; do
-        mv "\$file" ${args}.\${file}
-    done
-    for file in *.tsv; do
-        mv "\$file" ${args}.\${file}
-    done
  
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
