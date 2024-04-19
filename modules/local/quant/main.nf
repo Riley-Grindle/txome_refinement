@@ -16,7 +16,7 @@ process SALMON_QUANT {
     val   lib_type
 
     output:
-    tuple val(meta), path("*.${prefix}") , emit: results
+    tuple val(meta), path("${prefix}") , emit: results
     tuple val(meta), path("*info.json"), emit: json_info, optional: true
     path  "versions.yml"               , emit: versions
 
@@ -72,8 +72,7 @@ process SALMON_QUANT {
         cp $prefix/aux_info/meta_info.json "${prefix}_meta_info.json"
     fi
    
-    mv ${prefix} ${args2}.${prefix}
-
+    
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         salmon: \$(echo \$(salmon --version) | sed -e "s/salmon //g")
