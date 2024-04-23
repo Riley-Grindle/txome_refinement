@@ -152,10 +152,8 @@ include { QUANTIFY_SALMON as QUANTIFY_SALMON      } from '../subworkflows/local/
 //
 include { CAT_FASTQ                   } from '../modules/nf-core/cat/fastq/main'
 include { BBMAP_BBSPLIT               } from '../modules/nf-core/bbmap/bbsplit/main'
-include { SAMTOOLS_SORT               } from '../modules/nf-core/samtools/sort/main'
 
 //!! we add this
-include { SAMTOOLS_SORT as   SAMTOOLS_SORT_BAM  } from '../modules/nf-core/samtools/sort/main'
 include { PRESEQ_LCEXTRAP             } from '../modules/nf-core/preseq/lcextrap/main'
 include { QUALIMAP_RNASEQ             } from '../modules/nf-core/qualimap/rnaseq/main'
 include { SORTMERNA                   } from '../modules/nf-core/sortmerna/main'
@@ -166,6 +164,8 @@ include { RSEM_PREPAREREFERENCE as MAKE_TRANSCRIPTS_FASTA	} from '../modules/loc
 include { RSEM_PREPAREREFERENCE as MAKE_TRANSCRIPTS_FASTA_POST       } from '../modules/local/preparegenome/main'
 include { SALMON_INDEX as SALMON_INDEX_FINAL	  } from '../modules/nf-core/salmon/index/main'
 include { GUNZIP as GUNZIP_FASTA            } from '../modules/nf-core/gunzip/main'
+include { SAMTOOLS_INDEX                    } from '../modules/local/samtools/index/main'
+include { SAMTOOLS_SORT                     } from '../modules/local/samtools/sort/main'
 
 //
 // SUBWORKFLOW: Consisting entirely of nf-core/modules
@@ -540,6 +540,13 @@ ch_versions = ch_versions.mix(SAMTOOLS_MERGE.out.versions.first())
     BAMSIFTER_NORMALIZATION_MERGED_BAM(SAMTOOLS_MERGE.out.bam)
     BAMSIFTER_NORMALIZATION_MERGED_BAM.out.normalized_bam.set{ch_genome_bam}
     ch_genome_bam.view{ "Ready for StringTie  Meta: ${it[0]}, Path: ${it[1]}" }}
+    
+    //
+    // MODULE PAIR: SAMTOOLS_SORT - SAMTOOLS_INDEX
+    //
+
+    SAMTOOLS_SORT(ch_genome_bam)
+    SAMTOOLS_INDEX(SAMTOOLS_SORT.out.bam)
 
 
     //
@@ -547,7 +554,7 @@ ch_versions = ch_versions.mix(SAMTOOLS_MERGE.out.versions.first())
     //
     if (!params.skip_alignment && !params.skip_stringtie) {
         STRINGTIE_STRINGTIE (
-            ch_genome_bam,
+            SAMTOOLS_SORT.out.bam,
             PREPARE_GENOME.out.gtf
         )
         ch_versions = ch_versions.mix(STRINGTIE_STRINGTIE.out.versions.first())
