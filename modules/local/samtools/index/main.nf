@@ -28,15 +28,6 @@ process SAMTOOLS_INDEX {
         -@ ${task.cpus-1} \\
         $args \\
         $input
-    
-
-    if [[ \$args == *"-b"* ] || [ \$args == *"--bai"* ]]; then
-        mv "\$file" ${prefix}.\${file}
-    fi
-
-    if [[ \$args == *"-c"* ] || [ \$args == *"--csi"* ]]; then
-        mv "\$file" ${prefix}.\${file}
-    fi
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
