@@ -29,17 +29,14 @@ process SAMTOOLS_INDEX {
         $args \\
         $input
     
-    for file in *.bai; do
-        mv "\$file" ${prefix}.\${file}
-    done
 
-    for file in *.csi; do
+    if [[ \$args == *"-b"* ] || [ \$args == *"--bai"* ]]; then
         mv "\$file" ${prefix}.\${file}
-    done
+    fi
 
-    for file in *.crai; do
+    if [[ \$args == *"-c"* ] || [ \$args == *"--csi"* ]]; then
         mv "\$file" ${prefix}.\${file}
-    done
+    fi
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
