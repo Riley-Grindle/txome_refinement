@@ -440,9 +440,6 @@
         "skip_pseudo_alignment": {
             "type": "boolean"
         },
-        "transcript_id_prefix_gffcompare": {
-            "type": "string"
-        },
         "onlyOneInputSample": {
             "type": "boolean"
         },
@@ -557,7 +554,11 @@
         },
         "gene_tx_prefix": {
             "type": "string",
-            "default": null
+            "default": "None"
+        },
+        "save_new_reference": {
+            "type": "string",
+            "default": "true"
         }
     }
 }
