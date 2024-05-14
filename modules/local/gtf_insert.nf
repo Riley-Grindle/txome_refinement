@@ -36,6 +36,9 @@ process GTF_INSERT {
     combine_unioned_genes.py filtered_out_inserted_novels.gtf overlap_inserted.json $loci_file $gene_prefix
     json_2_gtf.py joined_genes_w_spanning_txs.json
     find_novel_tscripts.py filtered_out_inserted_novels_2.gtf overlap_inserted.gtf key_value_genes.json ${meta.id}
+    
+    sed -i.bak 's/; Parent ".[^"]*//' final_annotation.gtf
+    sed -i.bak 's/; ID ".[^"]*//' final_annotation.gtf
     """
 }
 
