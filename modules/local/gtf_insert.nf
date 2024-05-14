@@ -35,7 +35,7 @@ process GTF_INSERT {
     insert_by_start.py inserted_overlap_sharing_novels.json parse_reference_gtf.json
     combine_unioned_genes.py filtered_out_inserted_novels.gtf overlap_inserted.json $loci_file $gene_prefix
     json_2_gtf.py joined_genes_w_spanning_txs.json
-    find_novel_tscripts.py filtered_out_inserted_novels_2.gtf overlap_inserted.gtf key_value_genes.json
+    find_novel_tscripts.py filtered_out_inserted_novels_2.gtf overlap_inserted.gtf key_value_genes.json ${meta.id}
     """
 }
 
