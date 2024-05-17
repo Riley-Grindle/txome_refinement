@@ -557,8 +557,8 @@
             "default": "None"
         },
         "save_new_reference": {
-            "type": "string",
-            "default": "true"
+            "type": "boolean",
+            "default": true
         }
     }
 }
