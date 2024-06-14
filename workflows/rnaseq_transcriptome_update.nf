@@ -600,7 +600,8 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
     )
     
     if (!params.skip_agat) {
-        ch_final_gtf = GTF_FINAL_FORMATTING([[id:params.gene_tx_prefix], ch_new_gtf]).out.output_gtf
+        ch_new_gtf.map { [ [id:params.gene_tx_prefix], it ] }. set { ch_agat_in }
+        ch_final_gtf = GTF_FINAL_FORMATTING( ch_agat_in ).out.output_gtf
     } else {
         ch_new_gtf.set { ch_final_gtf }
     }
