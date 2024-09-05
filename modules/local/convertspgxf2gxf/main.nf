@@ -2,7 +2,7 @@
 process AGAT_CONVERTSPGXF2GXF {
     tag "$meta.id"
     label 'process_high'
-    
+
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/agat:1.0.0--pl5321hdfd78af_0' :
@@ -22,15 +22,16 @@ process AGAT_CONVERTSPGXF2GXF {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def args2 = task.ext.args2 ?: 'agat'
     """
     agat config --expose
-    
+
     sed -i.bak 's/output_format: *.*/output_format: GTF/' agat_config.yaml
     rm *.bak
-    
+
     agat_convert_sp_gxf2gxf.pl \\
         -g $gtf \\
-        -o ${prefix}.agat.gtf \\
+        -o ${prefix}.${args2}.gtf \\
         $args
 
     cat <<-END_VERSIONS > versions.yml

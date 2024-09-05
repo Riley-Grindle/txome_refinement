@@ -198,15 +198,15 @@ def pass_strand_check  = [:]
 workflow RNASEQ_TRANSCRIPTOME_UPDATE {
 
     ch_versions = Channel.empty()
-    
+
     //
     // MODULE: Standardize formatting of input gtf
     //
     if (!params.skip_agat) {
 
-        AGAT_CONVERTSPGXF2GXF([[:], params.gtf])
-        ch_formatted_gtf = AGAT_CONVERTSPGXF2GXF.out.output_gtf    
-    
+        AGAT_CONVERTSPGXF2GXF([['id': params.gene_tx_prefix], params.gtf])
+        ch_formatted_gtf = AGAT_CONVERTSPGXF2GXF.out.output_gtf
+
     } else {
         ch_formatted_gtf = Channel.of(params.gtf)
     }
@@ -215,7 +215,7 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     // SUBWORKFLOW: Uncompress and prepare reference genome files
     //
     def biotype = params.gencode ? "gene_type" : params.featurecounts_group_type
-    
+
     PREPARE_GENOME (
         params.fasta,
         ch_formatted_gtf.first(),
@@ -237,8 +237,10 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
         params.genome_size
     )
     ch_versions = ch_versions.mix(PREPARE_GENOME.out.versions)
-    
+
+    //
     // Check if contigs in genome fasta file > 512 Mbp
+    //
     if (!params.skip_alignment && !params.bam_csi_index) {
         PREPARE_GENOME
             .out
@@ -280,7 +282,9 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     .set { ch_cat_fastq }
     ch_versions = ch_versions.mix(CAT_FASTQ.out.versions.first().ifEmpty(null))
 
+    //
     // Branch FastQ channels if 'auto' specified to infer strandedness
+    //
     ch_cat_fastq
         .branch {
             meta, fastq ->
@@ -293,8 +297,8 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
 
     //
     // SUBWORKFLOW: Sub-sample FastQ files and pseudo-align with Salmon to auto-infer strandedness
-    //
     // Return empty channel if ch_strand_fastq.auto_strand is empty so salmon index isn't created
+    //
     PREPARE_GENOME.out.fasta
         .combine(ch_strand_fastq.auto_strand)
         .map { it.first() }
@@ -324,6 +328,7 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     //
     // SUBWORKFLOW: Read QC, extract UMI and trim adapters with TrimGalore!
     // default setting trimmer is params.trimmer = 'trimgalore' in the nextflow.config
+    //
     ch_filtered_reads      = Channel.empty()
     ch_fastqc_raw_multiqc  = Channel.empty()
     ch_fastqc_trim_multiqc = Channel.empty()
@@ -413,9 +418,7 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     ch_sortmerna_multiqc = Channel.empty()
     if (params.remove_ribo_rna) {
         ch_sortmerna_fastas = Channel.from(ch_ribo_db.readLines()).map { row -> file(row, checkIfExists: true) }.collect()
-//why we can use collect() to get ch_sortmerna_fastas, and pass ch_sortmerna_fastas into SORTMERNA?
-// but do not use collect() for ch_filtered_reads because collect will broke the tuple stucture
-//and collect() will not broke the structure for ch_sortmerna_fastas
+
         SORTMERNA (
             ch_filtered_reads,
             ch_sortmerna_fastas
@@ -426,31 +429,29 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
 
         ch_sortmerna_multiqc = SORTMERNA.out.log
         ch_versions = ch_versions.mix(SORTMERNA.out.versions.first())
-}
-
-
-if (params.double_end_sample) {
-
-ch_filtered_reads = ch_filtered_reads
-    .filter { meta, path ->
-        meta.single_end == false || meta.single_end == null  // null is for the case of undefined
     }
-}
 
 
-//In terms of Single end
-
-if (params.single_end_sample) {
+    if (params.paired_end_sample) {
 
     ch_filtered_reads = ch_filtered_reads
         .filter { meta, path ->
-            meta.single_end == true
+            meta.single_end == false || meta.single_end == null
         }
+    }
 
-}
+    if (params.single_end_sample) {
 
-   // SUBWORKFLOW: Alignment with STAR and gene/transcript quantification with Salmon
+        ch_filtered_reads = ch_filtered_reads
+            .filter { meta, path ->
+                meta.single_end == true
+            }
 
+    }
+
+    //
+    // SUBWORKFLOW: Alignment with STAR
+    //
     ch_genome_bam                 = Channel.empty()
     ch_genome_bam_index           = Channel.empty()
     ch_samtools_stats             = Channel.empty()
@@ -459,22 +460,17 @@ if (params.single_end_sample) {
     ch_star_multiqc               = Channel.empty()
     ch_aligner_pca_multiqc        = Channel.empty()
     ch_aligner_clustering_multiqc = Channel.empty()
-    if (!params.skip_alignment && params.aligner == 'star_salmon') {
-        ALIGN_STAR (
-            ch_filtered_reads,
-            PREPARE_GENOME.out.star_index.map { [ [:], it ] },
-            PREPARE_GENOME.out.gtf.map { [ [:], it ] },
-            params.star_ignore_sjdbgtf,
-            '',
-            params.seq_center ?: '',
-            is_aws_igenome,
-            PREPARE_GENOME.out.fasta.map { [ [:], it ] }
-        )
-        //please check subworkflow align_stat, you will found emit： bam            = BAM_SORT_STATS_SAMTOOLS.out.bam
-        // and module/nf-core star/align/main.nf
 
-        //we use ch_genome_bam        = ALIGN_STAR.out.bam_sorted
-        // to replace original bam            = ALIGN_STAR.out.bam
+    ALIGN_STAR (
+        ch_filtered_reads,
+        PREPARE_GENOME.out.star_index.map { [ [:], it ] },
+        PREPARE_GENOME.out.gtf.map { [ [:], it ] },
+        params.star_ignore_sjdbgtf,
+        '',
+        params.seq_center ?: '',
+        is_aws_igenome,
+        PREPARE_GENOME.out.fasta.map { [ [:], it ] }
+    )
 
 
         ch_genome_bam        = ALIGN_STAR.out.bam
@@ -486,65 +482,69 @@ if (params.single_end_sample) {
         ch_star_multiqc      = ALIGN_STAR.out.log_final
 
 
-
-
         if (params.bam_csi_index) {
             ch_genome_bam_index = ALIGN_STAR.out.csi
         }
         ch_versions = ch_versions.mix(ALIGN_STAR.out.versions)
 
 
+    if(params.run_bamsifter_indiv_samples) {
 
-if(!params.skip_bamsifter) {
-    ch_bamsifter = BAMSIFTER(ch_genome_bam).normalized_bam.collect()
+        //
+        // MODULE: Normalize aligned reads individually
+        //
+        ch_bamsifter = BAMSIFTER(ch_genome_bam).normalized_bam.collect()
 
-    ch_bamsifter
-        .flatMap()
-        .map { item ->
-            if(item instanceof Map) {
-                item['id'] = params.gene_tx_prefix
-                return item
-            } else {
-                return item
+        ch_bamsifter
+            .flatMap()
+            .map { item ->
+                if(item instanceof Map) {
+                    item['id'] = params.gene_tx_prefix
+                    return item
+                } else {
+                    return item
+                }
             }
-        }
-        .collate(2)
-        .groupTuple()
-        .map { meta, fastq ->
-            [ meta, fastq.flatten() ]
-        }
-        .set{ ch_bamsifter_ready_samtools_merged }
-        ch_bamsifter_ready_samtools_merged.view{ "Ready for Samtools_Merge  Meta: ${it[0]}, Path: ${it[1]}" }
+            .collate(2)
+            .groupTuple()
+            .map { meta, fastq ->
+                [ meta, fastq.flatten() ]
+            }
+            .set{ ch_bamsifter_ready_samtools_merged }
+            ch_bamsifter_ready_samtools_merged.view{ "Ready for Samtools_Merge  Meta: ${it[0]}, Path: ${it[1]}" }
 
-    // use BAMSIFTER to normalize the bam files in parallel.
-    SAMTOOLS_MERGE(ch_bamsifter_ready_samtools_merged,
-        PREPARE_GENOME.out.fasta.map { [ [:], it ] },
-        PREPARE_GENOME.out.fai.map { [ [:], it ] }
+        //
+        // Merge bam files
+        //
+        SAMTOOLS_MERGE(ch_bamsifter_ready_samtools_merged,
+            PREPARE_GENOME.out.fasta.map { [ [:], it ] },
+            PREPARE_GENOME.out.fai.map { [ [:], it ] }
+        )
+
+    } else {
+
+        //
+        // Merge bam files
+        //
+        SAMTOOLS_MERGE(ch_genome_bam,
+            PREPARE_GENOME.out.fasta.map { [ [:], it ] },
+            PREPARE_GENOME.out.fai.map { [ [:], it ] }
+        )
+    }
+    ch_versions = ch_versions.mix(SAMTOOLS_MERGE.out.versions.first())
+
+    //
+    // MODULE: BAMSIFTER_NORMALIZATION_MERGED_BAM again after SAMTOOLS_MERGE
+    //
+    BAMSIFTER_NORMALIZATION_MERGED_BAM(
+        SAMTOOLS_MERGE.out.bam
     )
-} else {
-    // IF skip BAMSIFTER，use CH_GENOME_BAM chanel
-    SAMTOOLS_MERGE(ch_genome_bam,
-        PREPARE_GENOME.out.fasta.map { [ [:], it ] },
-        PREPARE_GENOME.out.fai.map { [ [:], it ] }
-    )
-}
-ch_versions = ch_versions.mix(SAMTOOLS_MERGE.out.versions.first())
 
-
-
-    SAMTOOLS_MERGE.out.bam.view()
-
-    //BAMSIFTER_NORMALIZATION_MERGED_BAM agin after SAMTOOLS_MERGE
-
-    if(!params.skip_bamsifter) {
-    BAMSIFTER_NORMALIZATION_MERGED_BAM(SAMTOOLS_MERGE.out.bam)
     BAMSIFTER_NORMALIZATION_MERGED_BAM.out.normalized_bam.set{ch_genome_bam}
-    ch_genome_bam.view{ "Ready for StringTie  Meta: ${it[0]}, Path: ${it[1]}" }}
-    
-    //
-    // MODULE PAIR: SAMTOOLS_SORT - SAMTOOLS_INDEX
-    //
 
+    //
+    // MODULE PAIR: SAMTOOLS_SORT - SAMTOOLS_INDEX, sort and generate index for bam file to be examined in genome browser or other tool
+    //
     SAMTOOLS_SORT(ch_genome_bam)
     SAMTOOLS_INDEX(SAMTOOLS_SORT.out.bam)
 
@@ -552,43 +552,40 @@ ch_versions = ch_versions.mix(SAMTOOLS_MERGE.out.versions.first())
     //
     // MODULE: STRINGTIE_STRINGTIE
     //
-    if (!params.skip_alignment && !params.skip_stringtie) {
-        STRINGTIE_STRINGTIE (
-            SAMTOOLS_SORT.out.bam,
-            PREPARE_GENOME.out.gtf
-        )
-        ch_versions = ch_versions.mix(STRINGTIE_STRINGTIE.out.versions.first())
-    }
-    //
-    // Module: ASSIGN_STRAND_AFTER_STRINGTIE
-    //
-    if(params.stringtie_ignore_gtf){
-    ASSIGN_STRAND_AFTER_STRINGTIE(STRINGTIE_STRINGTIE.out.transcript_gtf)}
-
-
+    STRINGTIE_STRINGTIE (
+        SAMTOOLS_SORT.out.bam,
+        PREPARE_GENOME.out.gtf
+    )
+    ch_versions = ch_versions.mix(STRINGTIE_STRINGTIE.out.versions.first())
 
     //
-    // MODULE: GFFCOMPARE
+    // Module: ASSIGN_STRAND_AFTER_STRINGTIE, if STRINGTIE is run in -e mode (expression estimation per gtf transcript region) remove gtf lines with col 9 coverage value less than params.coverage
+    // *** NOTE: No novel transcripts will be identified in STRINGTIE -e mode, only overlapping transcripts to the input gtf will be returned.
+    // *** NOTE: If no strand is assigned from STRINGTIE, "+" will be assigned for compatibility with the GFFCOMPARE module.
     //
+    ASSIGN_STRAND_AFTER_STRINGTIE(STRINGTIE_STRINGTIE.out.transcript_gtf,
+                                    params.coverage)
 
-    // combine fasta and fai into one channel，make sure format is tuple val(meta2), path(fasta), path(fai)
-ch_combine_fasta_fai = PREPARE_GENOME.out.fasta.combine(PREPARE_GENOME.out.fai)
-                          .map { fasta, fai -> [ [:], fasta, fai ] }
-    // convert reference_gtf int a format  tuple val(meta3), path(reference_gtf)
-ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
-// 21th Nov: STRINGTIE_STRINGTIE.out.transcript_gtf will be changed to  ASSIGN_STRAND_AFTER_STRINGTIE.out.processed_gtf (which is a gtf file of deleting unspeficified standness of the stringtie output gtf file without -e option )
-    GFFCOMPARE(ASSIGN_STRAND_AFTER_STRINGTIE.out.processed_gtf,ch_combine_fasta_fai,ch_reference_gtf)
+    //
+    // MODULE: GFFCOMPARE, compare Read generate gtf to input gtf, generates class codes to categorize overlapping feature correlation
+    //
+    ch_combine_fasta_fai = PREPARE_GENOME.out.fasta
+                        .combine(PREPARE_GENOME.out.fai)
+                        .map { fasta, fai -> [ [:], fasta, fai ] }
 
+    ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
+
+    GFFCOMPARE(
+        ASSIGN_STRAND_AFTER_STRINGTIE.out.processed_gtf,
+        ch_combine_fasta_fai,
+        ch_reference_gtf
+    )
     ch_versions = ch_versions.mix(GFFCOMPARE.out.versions.first())
 
 
-    //December 20th, 2024 we add this gtfinsert subworkflow
-    // MODULE: GTFINSERT
-
-
-    // Call the GTFINSERT subworkflow
-    // if you only have one input sample, you can use ch_gtfinsert_input = GFFCOMPARE.out.annotated.gtf otherwise you need to use ch_gtfinsert_input = GFFCOMPARE.out.combined.gtf
-
+    //
+    // MODULE: GTFINSERT, takes categorized features from read derived gtf and inserts them into pre-existing gtf using associated locations and custom logic.
+    //
     ch_gffcompare_gtf = params.onlyOneInputSample ? GFFCOMPARE.out.annotated_gtf : GFFCOMPARE.out.combined_gtf
     ch_new_gtf = GTF_INSERT(
         ch_gffcompare_gtf,
@@ -598,7 +595,10 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
         params.gene_tx_prefix
 
     )
-    
+
+    //
+    // MODULE: AGAT, gtf structure formatting
+    //
     if (!params.skip_agat) {
         ch_new_gtf.map { [ [id:params.gene_tx_prefix], it ] }.set { ch_agat_in }
         ch_final_gtf = GTF_FINAL_FORMATTING( ch_agat_in ).output_gtf
@@ -606,11 +606,15 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
         ch_new_gtf.set { ch_final_gtf }
     }
 
+
+    //
+    // MODULE SET: Salmon quantification of intiial reads to new transcriptome, potential for additional filtering of features.
+    //
     if ((params.fasta).endsWith('.gz')) {
         ch_fasta_salmon    = GUNZIP_FASTA ( [ [:], params.fasta ] ).gunzip.map { it[1] }
         ch_versions = ch_versions.mix(GUNZIP_FASTA.out.versions)
     } else {
-	ch_fasta_salmon = Channel.value(file(params.fasta))
+	    ch_fasta_salmon = Channel.value(file(params.fasta))
     }
 
 
@@ -618,7 +622,7 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
     ch_versions         = ch_versions.mix(MAKE_TRANSCRIPTS_FASTA_POST.out.versions)
 
     SALMON_INDEX_FINAL(ch_fasta_salmon, MAKE_TRANSCRIPTS_FASTA_POST.out.transcript_fasta)
-    ch_versions         = ch_versions.mix(SALMON_INDEX_FINAL.out.versions)    
+    ch_versions         = ch_versions.mix(SALMON_INDEX_FINAL.out.versions)
 
     ch_index  = SALMON_INDEX_FINAL.out.index
     ch_new_tx = MAKE_TRANSCRIPTS_FASTA_POST.out.transcript_fasta
@@ -628,10 +632,10 @@ ch_reference_gtf = PREPARE_GENOME.out.gtf.map { [ [:], it ] }
         ch_index.first(),
         ch_new_tx.first(),
         ch_final_gtf.first(),
-        params.alignment_mode, 
+        params.alignment_mode,
         params.lib_type
-    )    
-}
+    )
+
 }
 
 

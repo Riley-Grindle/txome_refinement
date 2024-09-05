@@ -10,6 +10,7 @@ process ASSIGN_STRAND_AFTER_STRINGTIE {
 
     input:
     tuple val(meta), path(gtf)
+    val coverage
 
     output:
     tuple val(meta), path("strand_after_StringTie.gtf") , emit: processed_gtf
@@ -33,9 +34,9 @@ process ASSIGN_STRAND_AFTER_STRINGTIE {
                 if (match(attrs[i], /cov "([^"]+)"/)) {
                     cov_value = substr(attrs[i], RSTART + 5, RLENGTH - 6); # Extract cov value
                     cov_value += 0; # Convert to number
-                    if (cov_value < 10) {
+                    if (cov_value < $coverage) {
                         print \$0 >> "delete_strand_after_StringTie.gtf"; # Record deleted lines
-                        next; # Skip lines with coverage less than 10
+                        next; # Skip lines with coverage less than # var coverage
                     } else {
                         \$7 = "+"; # Set strand to '+'
                         print \$0 >> "only_modified_strand_part_after_StringTie.gtf"; # Record lines modified to '+'

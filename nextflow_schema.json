@@ -10,18 +10,8 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": ["input", "outdir"],
+            "required": ["outdir"],
             "properties": {
-                "input": {
-                    "type": "string",
-                    "format": "file-path",
-                    "exists": true,
-                    "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
-                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.",
-                    "fa_icon": "fas fa-file-csv"
-                },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
@@ -268,13 +258,7 @@
         "single_end_sample": {
             "type": "boolean"
         },
-        "double_end_sample": {
-            "type": "boolean"
-        },
-        "skip_bamsifter": {
-            "type": "boolean"
-        },
-        "skip_samtools_merge": {
+        "paired_end_sample": {
             "type": "boolean"
         },
         "splicesites": {
@@ -378,10 +362,6 @@
             "type": "string",
             "default": "/Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/assets/rrna-db-defaults.txt"
         },
-        "aligner": {
-            "type": "string",
-            "default": "star_salmon"
-        },
         "genome_size": {
             "type": "string"
         },
@@ -434,9 +414,6 @@
         "skip_markduplicates": {
             "type": "boolean"
         },
-        "skip_alignment": {
-            "type": "boolean"
-        },
         "skip_pseudo_alignment": {
             "type": "boolean"
         },
@@ -459,9 +436,6 @@
             "type": "boolean"
         },
         "skip_bigwig": {
-            "type": "boolean"
-        },
-        "skip_stringtie": {
             "type": "boolean"
         },
         "skip_fastqc": {
@@ -549,16 +523,22 @@
             "type": "boolean"
         },
         "skip_agat": {
-            "type": "boolean",
-            "default": true
+            "type": "boolean"
         },
         "gene_tx_prefix": {
-            "type": "string",
-            "default": "None"
+            "type": "string"
         },
         "save_new_reference": {
             "type": "boolean",
             "default": true
+        },
+        "run_bamsifter_indiv_samples": {
+            "type": "boolean",
+            "default": true
+        },
+        "coverage": {
+            "type": "integer",
+            "default": 10
         }
     }
 }
