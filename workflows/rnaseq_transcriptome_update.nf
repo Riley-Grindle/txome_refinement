@@ -601,7 +601,7 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     //
     if (!params.skip_agat) {
         ch_new_gtf.map { [ [id:params.gene_tx_prefix], it ] }.set { ch_agat_in }
-        ch_final_gtf = GTF_FINAL_FORMATTING( ch_agat_in ).output_gtf
+        ch_final_gtf = GTF_FINAL_FORMATTING( ch_agat_in ).final_gtf
     } else {
         ch_new_gtf.set { ch_final_gtf }
     }

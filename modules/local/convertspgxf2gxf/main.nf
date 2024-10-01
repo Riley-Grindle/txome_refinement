@@ -12,7 +12,8 @@ process AGAT_CONVERTSPGXF2GXF {
     tuple val(meta), path(gtf)
 
     output:
-    path("*.agat.gtf")  , emit: output_gtf
+    path("*.agat.gtf")  , emit: output_gtf, optional: true
+    path("*.final.gtf")  , emit: final_gtf, optional: false
     path("*.log")       , emit: log
     path "versions.yml" , emit: versions
 
