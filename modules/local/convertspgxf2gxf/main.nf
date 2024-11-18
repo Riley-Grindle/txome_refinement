@@ -13,7 +13,7 @@ process AGAT_CONVERTSPGXF2GXF {
 
     output:
     path("*.agat.gtf")  , emit: output_gtf, optional: true
-    path("*.final.gtf")  , emit: final_gtf, optional: false
+    path("*.final.gtf")  , emit: final_gtf, optional: true
     path("*.log")       , emit: log
     path "versions.yml" , emit: versions
 
