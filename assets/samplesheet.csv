@@ -1,3 +1,3 @@
 sample,fastq_1,fastq_2,strandedness
-Brain_RNAseq_regeneration_rep1_subset,assets/test_fastqs/danioRerio_brain_regeneration/test_data_scratch/Brain_RNAseq_regeneration_rep1.merged.regions_1-16.fastq.gz,,auto
-Brain_RNAseq_regeneration_rep2_subset,assets/test_fastqs/Brain_RNAseq_regeneration_rep2.merged.regions_1-16.fastq.gz,,auto
+Brain_RNAseq_regeneration_rep1_subset,${projectDir}/assets/test_fastqs/danioRerio_brain_regeneration/test_data_scratch/Brain_RNAseq_regeneration_rep1.merged.regions_1-16.fastq.gz,,auto
+Brain_RNAseq_regeneration_rep2_subset,${projectDir}/assets/test_fastqs/Brain_RNAseq_regeneration_rep2.merged.regions_1-16.fastq.gz,,auto
