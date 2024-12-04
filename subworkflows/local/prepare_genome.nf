@@ -30,7 +30,7 @@ include { GTF2BED                              } from '../../modules/local/gtf2b
 include { CAT_ADDITIONAL_FASTA                 } from '../../modules/local/cat_additional_fasta'
 include { GTF_GENE_FILTER                      } from '../../modules/local/gtf_gene_filter'
 include { STAR_GENOMEGENERATE_IGENOMES         } from '../../modules/local/star_genomegenerate_igenomes'
-// 理解take  https://www.nextflow.io/docs/latest/dsl2.html?highlight=workflow#workflow-parameters
+
 workflow PREPARE_GENOME {
     take:
     fasta                //      file: /path/to/genome.fasta

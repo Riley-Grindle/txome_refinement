@@ -387,10 +387,6 @@
         "stringtie_ignore_gtf": {
             "type": "boolean"
         },
-        "stringtie_merge": {
-            "type": "boolean",
-            "default": true
-        },
         "min_mapped_reads": {
             "type": "integer",
             "default": 5
@@ -455,9 +451,6 @@
             "type": "boolean"
         },
         "skip_biotype_qc": {
-            "type": "boolean"
-        },
-        "skip_deseq2_qc": {
             "type": "boolean"
         },
         "skip_multiqc": {

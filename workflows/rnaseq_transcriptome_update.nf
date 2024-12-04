@@ -93,20 +93,13 @@ ch_biotypes_header_multiqc   = file("$projectDir/assets/multiqc/biotypes_header.
 //
 // MODULE: Loaded from modules/local/
 //
-include { BEDTOOLS_GENOMECOV                 } from '../modules/local/bedtools_genomecov'
-include { DESEQ2_QC as DESEQ2_QC_STAR_SALMON } from '../modules/local/deseq2_qc'
-include { DESEQ2_QC as DESEQ2_QC_RSEM        } from '../modules/local/deseq2_qc'
-include { DESEQ2_QC as DESEQ2_QC_SALMON      } from '../modules/local/deseq2_qc'
 include { DUPRADAR                           } from '../modules/local/dupradar'
 include { MULTIQC                            } from '../modules/local/multiqc'
-include { MULTIQC_CUSTOM_BIOTYPE             } from '../modules/local/multiqc_custom_biotype'
 include { UMITOOLS_PREPAREFORRSEM as UMITOOLS_PREPAREFORSALMON } from '../modules/local/umitools_prepareforrsem.nf'
 //customized modules
 // include { TrinityNormalizeReads as TrinityNormalizeReads_SingleEnd } from '../modules/local/TrinityNormalization/trinity_normalization.nf'
 // include { TrinityNormalizeReads as TrinityNormalizeReads_DoubleEnd } from '../modules/local/TrinityNormalization/trinity_normalization.nf'
 //include { CreateSampleFile } from '../modules/local/Samples_file_for_trinity_normalization.nf'
-// include { Staging as Staging_SingleEnd } from '../modules/local/create_samples_file_staging.nf'
-// include { Staging as Staging_DoubleEnd } from '../modules/local/create_samples_file_staging.nf'
 
 include { BAMSIFTER  } from '../modules/local/bamsifter.nf'
 include { BAMSIFTER as BAMSIFTER_NORMALIZATION_MERGED_BAM} from '../modules/local/bamsifter.nf'
@@ -123,12 +116,6 @@ include { GTF_GENE_FILTER   as   GTF_GENE_FILTER_FROM_NEW_GTF                   
 include { SALMON_INDEX   as   SALMON_INDEX_FROM_NEW_TRANSCRIPT_FASTA                 } from '../modules/nf-core/salmon/index/main'
 include { GFFCOMPARE                   } from '../modules/local/gffcompare.nf'
 include { GTF_INSERT } from '../modules/local/gtf_insert.nf'
-
-//fastq after trinity normalization
-//include { FASTQC as FASTQC_AFTER_TRINITY} from '../modules/nf-core/fastqc/main'
-
-//StringTie merge modules
-//include {STRINGTIE_MERGE} from '../modules/local/stringTie_merge/main.nf'
 
 
 //

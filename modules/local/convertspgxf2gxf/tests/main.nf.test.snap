@@ -1,0 +1,37 @@
+{
+    "GTF Format | AGAT | TEST": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    
+                ],
+                "final_gtf": [
+                    
+                ],
+                "log": [
+                    
+                ],
+                "output_gtf": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.1"
+        },
+        "timestamp": "2024-12-04T16:59:25.47287"
+    }
+}
