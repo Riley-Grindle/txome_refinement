@@ -6,6 +6,7 @@ results/
 testing/
 testing*
 *.pyc
+.nf-test.log
 .nf-test*
 .nf-test/*
 .nf-test/tests/869d34911626d97a329d036d3d2c068b/meta/*
