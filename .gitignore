@@ -7,3 +7,6 @@ testing/
 testing*
 *.pyc
 .nf-test*
+.nf-test/*
+.nf-test/tests/869d34911626d97a329d036d3d2c068b/meta/*
+.nf-test/tests/869d34911626d97a329d036d3d2c068b/null/agat/*
