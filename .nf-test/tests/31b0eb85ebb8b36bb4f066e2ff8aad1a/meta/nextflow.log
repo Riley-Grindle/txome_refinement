@@ -1,141 +1,142 @@
-Dec-05 11:06:02.747 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/meta/nextflow.log run /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test-31b0eb85ebb8b36bb4f066e2ff8aad1a.nf -c /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config -c /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/tests/nextflow.config -params-file /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/meta/params.json -ansi-log false -profile test,docker -with-trace /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/meta/trace.csv -w /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/work
-Dec-05 11:06:02.787 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.10.2
-Dec-05 11:06:02.798 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/rgrindle/.nextflow/plugins; core-plugins: nf-amazon@2.9.2,nf-azure@1.10.2,nf-cloudcache@0.4.2,nf-codecommit@0.2.2,nf-console@1.1.4,nf-google@1.15.2,nf-tower@1.9.3,nf-wave@1.7.4
-Dec-05 11:06:02.810 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Dec-05 11:06:02.810 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Dec-05 11:06:02.812 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
-Dec-05 11:06:02.817 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Dec-05 11:06:02.829 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config
-Dec-05 11:06:02.832 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config
-Dec-05 11:06:02.832 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/tests/nextflow.config
-Dec-05 11:06:02.833 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config
-Dec-05 11:06:02.833 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config
-Dec-05 11:06:02.833 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/tests/nextflow.config
-Dec-05 11:06:02.847 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/rgrindle/.nextflow/secrets/store.json
-Dec-05 11:06:02.849 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@1eb6e1c] - activable => nextflow.secret.LocalSecretsProvider@1eb6e1c
-Dec-05 11:06:02.859 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
-Dec-05 11:06:04.321 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
-Dec-05 11:06:04.712 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
-Dec-05 11:06:04.724 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [bih, cfc_dev, uzl_omics, ifb_core, embl_hd, denbi_qbic, alice, mjolnir_globe, uppmax, giga, incliva, ilifu, uge, rosalind_uge, lugh, mccleary, unibe_ibu, vai, czbiohub_aws, jax, roslin, ccga_med, tes, scw, public_aws_ecr, unc_longleaf, tigem, tubingen_apg, google, apollo, ipop_up, vsc_calcua, pdc_kth, googlels, ceci_nic5, stjude, daisybio, eddie, medair, biowulf, apptainer, bi, bigpurple, test_full_gcp, adcra, cedars, pawsey_setonix, vsc_kul_uhasselt, pawsey_nimbus, ucl_myriad, utd_ganymede, charliecloud, icr_davros, ceres, munin, arm, rosalind, hasta, cfc, uzh, test_full_aws, shu_bmrc, ebi_codon_slurm, ebc, ccga_dx, crick, ku_sund_danhead, marvin, biohpc_gen, shifter, mana, mamba, york_viking, unc_lccc, wehi, awsbatch, wustl_htcf, arcc, ceci_dragon2, imperial, maestro, software_license, genotoul, nci_gadi, abims, janelia, nu_genomics, googlebatch, oist, sahmri, kaust, mpcdf, leicester, vsc_ugent, create, sage, cambridge, jex, podman, ebi_codon, cheaha, xanadu, nyu_hpc, test, marjorie, computerome, ucd_sonic, seg_globe, sanger, dkfz, bluebear, pasteur, einstein, ethz_euler, m3c, test_full, imb, ucl_cscluster, tuos_stanage, azurebatch, hki, crukmi, csiro_petrichor, qmul_apocrita, docker, engaging, gis, hypatia, psmn, test_full_azure, eva, nygc, fgcz, conda, crg, singularity, mpcdf_viper, pe2, self_hosted_runner, tufts, uw_hyak_pedslabs, utd_sysbio, debug, genouest, cbe, unsw_katana, test_cache, phoenix, gitpod, seawulf, uod_hpc, fub_curta, uct_hpc, aws_tower, binac]
-Dec-05 11:06:04.766 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
-Dec-05 11:06:04.778 [main] INFO  nextflow.cli.CmdRun - Launching `/Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test-31b0eb85ebb8b36bb4f066e2ff8aad1a.nf` [peaceful_jepsen] DSL2 - revision: 6065d5fec4
-Dec-05 11:06:04.779 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Dec-05 11:06:04.779 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
-Dec-05 11:06:04.825 [main] DEBUG nextflow.Session - Session UUID: fd7f5d68-3304-4bac-924d-b1f6800a4eff
-Dec-05 11:06:04.826 [main] DEBUG nextflow.Session - Run name: peaceful_jepsen
-Dec-05 11:06:04.826 [main] DEBUG nextflow.Session - Executor pool size: 10
-Dec-05 11:06:04.832 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
-Dec-05 11:06:04.835 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=30; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-Dec-05 11:06:04.856 [main] DEBUG nextflow.cli.CmdRun - 
+Dec-09 12:41:45.775 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/meta/nextflow.log run /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test-31b0eb85ebb8b36bb4f066e2ff8aad1a.nf -c /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config -c /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/tests/nextflow.config -params-file /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/meta/params.json -ansi-log false -profile test,docker -with-trace /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/meta/trace.csv -w /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/work
+Dec-09 12:41:45.815 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.10.2
+Dec-09 12:41:45.827 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/rgrindle/.nextflow/plugins; core-plugins: nf-amazon@2.9.2,nf-azure@1.10.2,nf-cloudcache@0.4.2,nf-codecommit@0.2.2,nf-console@1.1.4,nf-google@1.15.2,nf-tower@1.9.3,nf-wave@1.7.4
+Dec-09 12:41:45.838 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Dec-09 12:41:45.838 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Dec-09 12:41:45.840 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Dec-09 12:41:45.845 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Dec-09 12:41:45.858 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config
+Dec-09 12:41:45.860 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config
+Dec-09 12:41:45.860 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/tests/nextflow.config
+Dec-09 12:41:45.861 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config
+Dec-09 12:41:45.861 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/nextflow.config
+Dec-09 12:41:45.861 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/tests/nextflow.config
+Dec-09 12:41:45.873 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/rgrindle/.nextflow/secrets/store.json
+Dec-09 12:41:45.874 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@1eb6e1c] - activable => nextflow.secret.LocalSecretsProvider@1eb6e1c
+Dec-09 12:41:45.884 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
+Dec-09 12:41:47.469 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
+Dec-09 12:41:47.879 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,docker`
+Dec-09 12:41:47.891 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [bih, cfc_dev, uzl_omics, ifb_core, embl_hd, denbi_qbic, alice, mjolnir_globe, uppmax, giga, incliva, ilifu, uge, rosalind_uge, lugh, mccleary, unibe_ibu, vai, czbiohub_aws, jax, roslin, ccga_med, tes, scw, public_aws_ecr, unc_longleaf, tigem, tubingen_apg, google, apollo, ipop_up, vsc_calcua, pdc_kth, googlels, ceci_nic5, stjude, daisybio, eddie, medair, biowulf, apptainer, bi, bigpurple, test_full_gcp, adcra, cedars, pawsey_setonix, vsc_kul_uhasselt, pawsey_nimbus, ucl_myriad, utd_ganymede, charliecloud, icr_davros, ceres, munin, arm, rosalind, hasta, cfc, uzh, test_full_aws, shu_bmrc, ebi_codon_slurm, ebc, ccga_dx, crick, ku_sund_danhead, marvin, biohpc_gen, shifter, mana, mamba, york_viking, unc_lccc, wehi, awsbatch, wustl_htcf, arcc, ceci_dragon2, imperial, maestro, software_license, genotoul, nci_gadi, abims, janelia, nu_genomics, googlebatch, oist, sahmri, kaust, mpcdf, leicester, vsc_ugent, create, sage, cambridge, jex, podman, ebi_codon, cheaha, xanadu, nyu_hpc, test, marjorie, computerome, ucd_sonic, seg_globe, sanger, dkfz, bluebear, pasteur, einstein, ethz_euler, m3c, test_full, imb, ucl_cscluster, tuos_stanage, azurebatch, hki, crukmi, csiro_petrichor, qmul_apocrita, docker, engaging, gis, hypatia, psmn, test_full_azure, eva, nygc, fgcz, conda, crg, singularity, mpcdf_viper, pe2, self_hosted_runner, tufts, uw_hyak_pedslabs, utd_sysbio, debug, genouest, cbe, unsw_katana, test_cache, phoenix, gitpod, seawulf, uod_hpc, fub_curta, uct_hpc, aws_tower, binac]
+Dec-09 12:41:47.931 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Dec-09 12:41:47.940 [main] INFO  nextflow.cli.CmdRun - Launching `/Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test-31b0eb85ebb8b36bb4f066e2ff8aad1a.nf` [gigantic_heyrovsky] DSL2 - revision: 6065d5fec4
+Dec-09 12:41:47.941 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Dec-09 12:41:47.941 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Dec-09 12:41:47.972 [main] DEBUG nextflow.Session - Session UUID: b65d7537-ce3a-45b9-a1e1-f06535e35e82
+Dec-09 12:41:47.972 [main] DEBUG nextflow.Session - Run name: gigantic_heyrovsky
+Dec-09 12:41:47.972 [main] DEBUG nextflow.Session - Executor pool size: 10
+Dec-09 12:41:47.976 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Dec-09 12:41:47.979 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=30; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Dec-09 12:41:47.991 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 24.10.2 build 5932
   Created: 27-11-2024 21:23 UTC (16:23 EDT)
   System: Mac OS X 13.5
   Runtime: Groovy 4.0.23 on OpenJDK 64-Bit Server VM 17.0.10+7
   Encoding: UTF-8 (UTF-8)
-  Process: 9452@rgrindle-mbp [172.16.4.166]
-  CPUs: 10 - Mem: 16 GB (139 MB) - Swap: 19 GB (1.1 GB)
-Dec-05 11:06:04.863 [main] DEBUG nextflow.Session - Work-dir: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/work [Mac OS X]
-Dec-05 11:06:04.881 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Dec-05 11:06:04.887 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-Dec-05 11:06:04.907 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-Dec-05 11:06:04.912 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 11; maxThreads: 1000
-Dec-05 11:06:04.942 [main] DEBUG nextflow.Session - Session start
-Dec-05 11:06:04.943 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/meta/trace.csv
-Dec-05 11:06:04.947 [main] DEBUG nextflow.Session - Using default localLib path: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/lib
-Dec-05 11:06:04.949 [main] DEBUG nextflow.Session - Adding to the classpath library: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/lib
-Dec-05 11:06:04.950 [main] DEBUG nextflow.Session - Adding to the classpath library: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/lib/nfcore_external_java_deps.jar
-Dec-05 11:06:05.064 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Dec-05 11:06:05.188 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name AGAT_CONVERTSPGXF2GXF
-Dec-05 11:06:05.195 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-05 11:06:05.195 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-05 11:06:05.198 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Dec-05 11:06:05.200 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=10; memory=16 GB; capacity=10; pollInterval=100ms; dumpInterval=5m
-Dec-05 11:06:05.202 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
-Dec-05 11:06:05.237 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: AGAT_CONVERTSPGXF2GXF
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: CUSTOM_DUMPSOFTWAREVERSIONS
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: SAMPLESHEET_CHECK
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: MAKE_TRANSCRIPTS_FASTA
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: MAKE_TRANSCRIPTS_FASTA_POST
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: UNTAR_.*
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: UNTAR_.*|STAR_GENOMEGENERATE|STAR_GENOMEGENERATE_IGENOMES|HISAT2_BUILD
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: GFFREAD
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: HISAT2_EXTRACTSPLICESITES
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: SALMON_INDEX
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: SALMON_INDEX_FROM_NEW_TRANSCRIPT_FASTA
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: RSEM_PREPAREREFERENCE_GENOME
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: GTF2BED
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: CAT_ADDITIONAL_FASTA|PREPROCESS_TRANSCRIPTS_FASTA_GENCODE
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: GTF_GENE_FILTER
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: CUSTOM_GETCHROMSIZES
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: CAT_FASTQ
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: FQ_SUBSAMPLE
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: .*:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: .*:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: .*:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: SORTMERNA
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: FASTQC
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: NFCORE_RNASEQ_TRANSCRIPTOME_UPDATE:RNASEQ_TRANSCRIPTOME_UPDATE:.*:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:.*
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: NFCORE_RNASEQ_TRANSCRIPTOME_UPDATE:RNASEQ_TRANSCRIPTOME_UPDATE:.*:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_SORT
-Dec-05 11:06:05.247 [main] WARN  nextflow.Session - There's no process matching config selector: NFCORE_RNASEQ_TRANSCRIPTOME_UPDATE:RNASEQ_TRANSCRIPTOME_UPDATE:.*:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_INDEX
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_MARKDUPLICATES_PICARD:PICARD_MARKDUPLICATES
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_MARKDUPLICATES_PICARD:SAMTOOLS_INDEX
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS:.*
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_FORWARD:UCSC_BEDCLIP
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_FORWARD:UCSC_BEDGRAPHTOBIGWIG
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_REVERSE:UCSC_BEDCLIP
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_REVERSE:UCSC_BEDGRAPHTOBIGWIG
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: BAMSIFTER
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: BAMSIFTER_NORMALIZATION_MERGED_BAM
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: SAMTOOLS_MERGE
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: SAMTOOLS_SORT
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: SAMTOOLS_INDEX
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: GFFCOMPARE
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: STRINGTIE_STRINGTIE
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: ASSIGN_STRAND_AFTER_STRINGTIE
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:ALIGN_STAR:STAR_ALIGN|.*:ALIGN_STAR:STAR_ALIGN_IGENOMES
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_STAR_SALMON:SALMON_QUANT
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_STAR_SALMON:SALMON_TX2GENE
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_STAR_SALMON:SALMON_TXIMPORT
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_STAR_SALMON:SALMON_SE_.*
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: QUALIMAP_RNASEQ
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: DUPRADAR
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: SUBREAD_FEATURECOUNTS
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_BAMSTAT
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_INFEREXPERIMENT
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_JUNCTIONANNOTATION
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_JUNCTIONSATURATION
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_READDUPLICATION
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: MULTIQC
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_SALMON:SALMON_QUANT
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_SALMON:SALMON_TX2GENE
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_SALMON:SALMON_TXIMPORT
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_SALMON:SALMON_SE_.*
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: GTF_INSERT
-Dec-05 11:06:05.248 [main] WARN  nextflow.Session - There's no process matching config selector: GTF_FINAL_FORMATTING
-Dec-05 11:06:05.248 [main] DEBUG nextflow.Session - Igniting dataflow network (2)
-Dec-05 11:06:05.248 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > AGAT_CONVERTSPGXF2GXF
-Dec-05 11:06:05.249 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Process: 49993@rgrindle-mbp [172.16.4.166]
+  CPUs: 10 - Mem: 16 GB (89.8 MB) - Swap: 21 GB (1.1 GB)
+Dec-09 12:41:47.998 [main] DEBUG nextflow.Session - Work-dir: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/work [Mac OS X]
+Dec-09 12:41:48.023 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Dec-09 12:41:48.028 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Dec-09 12:41:48.048 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Dec-09 12:41:48.053 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 11; maxThreads: 1000
+Dec-09 12:41:48.083 [main] DEBUG nextflow.Session - Session start
+Dec-09 12:41:48.084 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/meta/trace.csv
+Dec-09 12:41:48.087 [main] DEBUG nextflow.Session - Using default localLib path: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/lib
+Dec-09 12:41:48.089 [main] DEBUG nextflow.Session - Adding to the classpath library: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/lib
+Dec-09 12:41:48.089 [main] DEBUG nextflow.Session - Adding to the classpath library: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/lib/nfcore_external_java_deps.jar
+Dec-09 12:41:48.212 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Dec-09 12:41:48.350 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:process_low` matches labels `process_low` for process with name AGAT_CONVERTSPGXF2GXF
+Dec-09 12:41:48.359 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-09 12:41:48.359 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-09 12:41:48.362 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Dec-09 12:41:48.365 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=10; memory=16 GB; capacity=10; pollInterval=100ms; dumpInterval=5m
+Dec-09 12:41:48.367 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Dec-09 12:41:48.403 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: AGAT_CONVERTSPGXF2GXF
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: CUSTOM_DUMPSOFTWAREVERSIONS
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: SAMPLESHEET_CHECK
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: MAKE_TRANSCRIPTS_FASTA
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: MAKE_TRANSCRIPTS_FASTA_POST
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: UNTAR_.*
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: UNTAR_.*|STAR_GENOMEGENERATE|STAR_GENOMEGENERATE_IGENOMES|HISAT2_BUILD
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: GFFREAD
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: HISAT2_EXTRACTSPLICESITES
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: SALMON_INDEX
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: SALMON_INDEX_FROM_NEW_TRANSCRIPT_FASTA
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: RSEM_PREPAREREFERENCE_GENOME
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: GTF2BED
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: CAT_ADDITIONAL_FASTA|PREPROCESS_TRANSCRIPTS_FASTA_GENCODE
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: GTF_GENE_FILTER
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: CUSTOM_GETCHROMSIZES
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: CAT_FASTQ
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: FQ_SUBSAMPLE
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: .*:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: .*:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: .*:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: SORTMERNA
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: FASTQC
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: NFCORE_RNASEQ_TRANSCRIPTOME_UPDATE:RNASEQ_TRANSCRIPTOME_UPDATE:.*:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:.*
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: NFCORE_RNASEQ_TRANSCRIPTOME_UPDATE:RNASEQ_TRANSCRIPTOME_UPDATE:.*:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_SORT
+Dec-09 12:41:48.414 [main] WARN  nextflow.Session - There's no process matching config selector: NFCORE_RNASEQ_TRANSCRIPTOME_UPDATE:RNASEQ_TRANSCRIPTOME_UPDATE:.*:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_INDEX
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_MARKDUPLICATES_PICARD:PICARD_MARKDUPLICATES
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_MARKDUPLICATES_PICARD:SAMTOOLS_INDEX
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS:.*
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_FORWARD:UCSC_BEDCLIP
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_FORWARD:UCSC_BEDGRAPHTOBIGWIG
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_REVERSE:UCSC_BEDCLIP
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BEDGRAPH_BEDCLIP_BEDGRAPHTOBIGWIG_REVERSE:UCSC_BEDGRAPHTOBIGWIG
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: BAMSIFTER
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: BAMSIFTER_NORMALIZATION_MERGED_BAM
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: SAMTOOLS_MERGE
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: SAMTOOLS_SORT
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: SAMTOOLS_SORT_READ_IDS
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: SAMTOOLS_INDEX
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: GFFCOMPARE
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: STRINGTIE_STRINGTIE
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: ASSIGN_STRAND_AFTER_STRINGTIE
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:ALIGN_STAR:STAR_ALIGN|.*:ALIGN_STAR:STAR_ALIGN_IGENOMES
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_STAR_SALMON:SALMON_QUANT
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_STAR_SALMON:SALMON_TX2GENE
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_STAR_SALMON:SALMON_TXIMPORT
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_STAR_SALMON:SALMON_SE_.*
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: QUALIMAP_RNASEQ
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: DUPRADAR
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: SUBREAD_FEATURECOUNTS
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_BAMSTAT
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_INFEREXPERIMENT
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_JUNCTIONANNOTATION
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_JUNCTIONSATURATION
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:BAM_RSEQC:RSEQC_READDUPLICATION
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: MULTIQC
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_SALMON:SALMON_QUANT
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_SALMON:SALMON_TX2GENE
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_SALMON:SALMON_TXIMPORT
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: .*:QUANTIFY_SALMON:SALMON_SE_.*
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: GTF_INSERT
+Dec-09 12:41:48.415 [main] WARN  nextflow.Session - There's no process matching config selector: GTF_FINAL_FORMATTING
+Dec-09 12:41:48.415 [main] DEBUG nextflow.Session - Igniting dataflow network (2)
+Dec-09 12:41:48.416 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > AGAT_CONVERTSPGXF2GXF
+Dec-09 12:41:48.416 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
   Script_0728cdef064dca38: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/modules/local/convertspgxf2gxf/tests/../main.nf
   Script_5a09119d081278e4: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test-31b0eb85ebb8b36bb4f066e2ff8aad1a.nf
-Dec-05 11:06:05.249 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
-Dec-05 11:06:05.249 [main] DEBUG nextflow.Session - Session await
-Dec-05 11:06:05.332 [Task submitter] WARN  nextflow.container.DockerBuilder - Undocumented setting `docker.userEmulation` is not supported any more - please remove it from your config
-Dec-05 11:06:05.345 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Dec-05 11:06:05.346 [Task submitter] INFO  nextflow.Session - [14/63628d] Submitted process > AGAT_CONVERTSPGXF2GXF (TEST)
-Dec-05 11:08:01.020 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: AGAT_CONVERTSPGXF2GXF (TEST); status: COMPLETED; exit: 0; error: -; workDir: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/work/14/63628d8883ede5d0c696a0a08486f2]
-Dec-05 11:08:01.028 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=30; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-Dec-05 11:08:01.115 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process AGAT_CONVERTSPGXF2GXF > Skipping output binding because one or more optional files are missing: fileoutparam<1>
-Dec-05 11:08:01.120 [TaskFinalizer-1] WARN  nextflow.processor.PublishDir - Process `AGAT_CONVERTSPGXF2GXF` publishDir path contains a variable with a null value
-Dec-05 11:08:01.122 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=30; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
-Dec-05 11:08:01.125 [main] DEBUG nextflow.Session - Session await > all processes finished
-Dec-05 11:08:01.212 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
-Dec-05 11:08:01.213 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Dec-05 11:08:01.214 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
-Dec-05 11:08:01.214 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
-Dec-05 11:08:01.220 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=3m 48s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=2; peakMemory=12 GB; ]
-Dec-05 11:08:01.220 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
-Dec-05 11:08:01.221 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
-Dec-05 11:08:01.986 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
-Dec-05 11:08:02.080 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
-Dec-05 11:08:02.089 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
-Dec-05 11:08:02.089 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+Dec-09 12:41:48.416 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Dec-09 12:41:48.416 [main] DEBUG nextflow.Session - Session await
+Dec-09 12:41:48.481 [Task submitter] WARN  nextflow.container.DockerBuilder - Undocumented setting `docker.userEmulation` is not supported any more - please remove it from your config
+Dec-09 12:41:48.495 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-09 12:41:48.497 [Task submitter] INFO  nextflow.Session - [56/ff419d] Submitted process > AGAT_CONVERTSPGXF2GXF (TEST)
+Dec-09 12:43:42.986 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: AGAT_CONVERTSPGXF2GXF (TEST); status: COMPLETED; exit: 0; error: -; workDir: /Users/rgrindle/Desktop/mdibl/wd/transcriptome_update/rnaseq_transcriptome_update/.nf-test/tests/31b0eb85ebb8b36bb4f066e2ff8aad1a/work/56/ff419da207d1587dc85f0b64284031]
+Dec-09 12:43:42.988 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=30; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Dec-09 12:43:43.076 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process AGAT_CONVERTSPGXF2GXF > Skipping output binding because one or more optional files are missing: fileoutparam<1>
+Dec-09 12:43:43.082 [TaskFinalizer-1] WARN  nextflow.processor.PublishDir - Process `AGAT_CONVERTSPGXF2GXF` publishDir path contains a variable with a null value
+Dec-09 12:43:43.085 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=30; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Dec-09 12:43:43.088 [main] DEBUG nextflow.Session - Session await > all processes finished
+Dec-09 12:43:43.187 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Dec-09 12:43:43.187 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Dec-09 12:43:43.188 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Dec-09 12:43:43.188 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Dec-09 12:43:43.194 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=3m 46s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=2; peakMemory=12 GB; ]
+Dec-09 12:43:43.194 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Dec-09 12:43:43.195 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Dec-09 12:43:44.005 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Dec-09 12:43:44.097 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Dec-09 12:43:44.106 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Dec-09 12:43:44.106 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

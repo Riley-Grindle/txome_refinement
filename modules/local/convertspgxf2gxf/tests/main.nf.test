@@ -4,6 +4,13 @@ nextflow_process {
     script "../main.nf"
     process "AGAT_CONVERTSPGXF2GXF"
 
+    setup {
+        process {
+            """
+            input[0] = Channel.of( [ [ id: "TEST"], file(params.gtf, checkIfExists: true ) ]  )
+            """
+        }
+    }
 
     test("GTF Format | AGAT | TEST") {
 
@@ -18,7 +25,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.output_gtf,
+                    process.out.versions
+                ).match()
+                }
             )
         }
 

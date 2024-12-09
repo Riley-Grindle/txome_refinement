@@ -19,21 +19,38 @@ process SAMTOOLS_SORT {
 
     script:
     def args = task.ext.args ?: ''
+    def args_list = args.tokenize()
     def prefix = task.ext.prefix ?: "${meta.id}"
     if ("$bam" == "${prefix}.bam") error "Input and output names are the same, use \"task.ext.prefix\" to disambiguate!"
-    """
-    samtools sort \\
-        $args \\
-        -@ $task.cpus \\
-        -o ${prefix}.merged.sifted.sorted.bam \\
-        -T $prefix \\
-        $bam 
+    if (args_list.contains("-N")) {
+        """
+        samtools sort \\
+            $args \\
+            -@ $task.cpus \\
+            -o ${prefix}.merged.sorted.bam \\
+            -T $prefix \\
+            $bam
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
-    END_VERSIONS
-    """
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
+        END_VERSIONS
+        """
+    } else {
+        """
+        samtools sort \\
+            $args \\
+            -@ $task.cpus \\
+            -o ${prefix}.merged.sifted.sorted.bam \\
+            -T $prefix \\
+            $bam
+
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
+        END_VERSIONS
+        """
+    }
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"

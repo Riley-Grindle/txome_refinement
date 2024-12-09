@@ -1,3 +1,0 @@
-Process `AGAT_CONVERTSPGXF2GXF` declares 1 input channel but 0 were specified
-
- -- Check script '/mnt/jfs/nextflow/txome_refinement/.nf-test-170713cfe570bd62e68809bc455d5419.nf' at line: 35 or see '/mnt/jfs/nextflow/txome_refinement/.nf-test/tests/170713cfe570bd62e68809bc455d5419/meta/nextflow.log' file for more details

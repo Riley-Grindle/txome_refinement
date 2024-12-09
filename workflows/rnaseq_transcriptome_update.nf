@@ -152,7 +152,8 @@ include { RSEM_PREPAREREFERENCE as MAKE_TRANSCRIPTS_FASTA_POST       } from '../
 include { SALMON_INDEX as SALMON_INDEX_FINAL	  } from '../modules/nf-core/salmon/index/main'
 include { GUNZIP as GUNZIP_FASTA            } from '../modules/nf-core/gunzip/main'
 include { SAMTOOLS_INDEX                    } from '../modules/local/samtools/index/main'
-include { SAMTOOLS_SORT                     } from '../modules/local/samtools/sort/main'
+include { SAMTOOLS_SORT as SAMTOOLS_SORT_PREP_INDEX  } from '../modules/local/samtools/sort/main'
+include { SAMTOOLS_SORT as SAMTOOLS_SORT_READ_IDS  } from '../modules/local/samtools/sort/main'
 
 //
 // SUBWORKFLOW: Consisting entirely of nf-core/modules
@@ -521,10 +522,13 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     ch_versions = ch_versions.mix(SAMTOOLS_MERGE.out.versions.first())
 
     //
+    // MODULE: SAMTOOLS_SORT by readname (for consistent results across runs)
     // MODULE: BAMSIFTER_NORMALIZATION_MERGED_BAM again after SAMTOOLS_MERGE
     //
+    SAMTOOLS_SORT_READ_IDS(SAMTOOLS_MERGE.out.bam)
+
     BAMSIFTER_NORMALIZATION_MERGED_BAM(
-        SAMTOOLS_MERGE.out.bam
+        SAMTOOLS_SORT_READ_IDS.out.bam
     )
 
     BAMSIFTER_NORMALIZATION_MERGED_BAM.out.normalized_bam.set{ch_genome_bam}
@@ -532,8 +536,8 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     //
     // MODULE PAIR: SAMTOOLS_SORT - SAMTOOLS_INDEX, sort and generate index for bam file to be examined in genome browser or other tool
     //
-    SAMTOOLS_SORT(ch_genome_bam)
-    SAMTOOLS_INDEX(SAMTOOLS_SORT.out.bam)
+    SAMTOOLS_SORT_PREP_INDEX(ch_genome_bam)
+    SAMTOOLS_INDEX(SAMTOOLS_SORT_PREP_INDEX.out.bam)
 
 
     //

@@ -1,4 +1,4 @@
-                            12/05/2024 at 16h06m09s                             
+                            12/09/2024 at 17h41m52s                             
 
 
  ------------------------------------------------------------------------------
@@ -37,11 +37,11 @@ We filter the ontology to apply this rule.		We found 1861 terms that are sequenc
 => Number of feature type (3rd column): 8
 	* Level1: 1 => gene
 	* level2: 1 => transcript
-	* level3: 6 => exon stop_codon three_prime_utr CDS five_prime_utr start_codon
+	* level3: 6 => start_codon three_prime_utr stop_codon five_prime_utr exon CDS
 	* unknown: 0 => 
 => Version of the Bioperl GFF parser selected by AGAT: 2
 
-                  ------ End parsing (done in 79 second) ------                 
+                  ------ End parsing (done in 77 second) ------                 
 
 
                            ------ Start checks ------                           
@@ -79,14 +79,14 @@ None found
 ------------------------------ Check8: check cds -------------------------------
 1735 CDS extended to include the stop_codon
 4 CDS created to include the stop_codon that was on next exon
------------------------------- done in 0 seconds -------------------------------
+------------------------------ done in 1 seconds -------------------------------
 
 ----------------------------- Check9: check exons ------------------------------
 No exons created
 No exons locations modified
 No supernumerary exons removed
 No level2 locations modified
------------------------------- done in 3 seconds -------------------------------
+------------------------------ done in 2 seconds -------------------------------
 
 ----------------------------- Check10: check utrs ------------------------------
 No UTRs created
@@ -96,7 +96,7 @@ No supernumerary UTRs removed
 
 ------------------------ Check11: all level2 locations -------------------------
 No problem found
------------------------------- done in 3 seconds -------------------------------
+------------------------------ done in 4 seconds -------------------------------
 
 ------------------------ Check12: all level1 locations -------------------------
 No problem found
@@ -104,7 +104,7 @@ No problem found
 
 ---------------------- Check13: remove identical isoforms ----------------------
 None found
------------------------------- done in 1 seconds -------------------------------
+------------------------------ done in 0 seconds -------------------------------
                   ------ End checks (done in 14 second) ------                  
 
 

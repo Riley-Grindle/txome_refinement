@@ -1,37 +1,41 @@
 {
     "GTF Format | AGAT | TEST": {
         "content": [
-            {
-                "0": [
-                    "TEST.agat.gtf:md5,a7f03b8419af2671f12c94232e722834"
-                ],
-                "1": [
-                    
-                ],
-                "2": [
-                    "Danio_rerio.GRCz11.110.chr1.gtf.agat.log:md5,4fdcbdc70ec471b6c52acb8ea60448bf"
-                ],
-                "3": [
-                    "versions.yml:md5,1e3edd44aa557b48faad7e17277a149b"
-                ],
-                "final_gtf": [
-                    
-                ],
-                "log": [
-                    "Danio_rerio.GRCz11.110.chr1.gtf.agat.log:md5,4fdcbdc70ec471b6c52acb8ea60448bf"
-                ],
-                "output_gtf": [
-                    "TEST.agat.gtf:md5,a7f03b8419af2671f12c94232e722834"
-                ],
-                "versions": [
-                    "versions.yml:md5,1e3edd44aa557b48faad7e17277a149b"
-                ]
-            }
+            [
+                "TEST.agat.gtf:md5,a7f03b8419af2671f12c94232e722834"
+            ],
+            [
+                "versions.yml:md5,1e3edd44aa557b48faad7e17277a149b"
+            ]
         ],
         "meta": {
             "nf-test": "0.9.2",
             "nextflow": "24.10.2"
         },
-        "timestamp": "2024-12-05T10:50:49.383837"
+        "timestamp": "2024-12-09T12:35:39.458754"
+    },
+    "AGAT": {
+        "content": [
+            [
+                "TEST.agat.gtf:md5,a7f03b8419af2671f12c94232e722834"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.2"
+        },
+        "timestamp": "2024-12-09T11:38:31.469104"
+    },
+    "AGAT Test_0.0.1": {
+        "content": [
+            [
+                "TEST.agat.gtf:md5,a7f03b8419af2671f12c94232e722834"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.2"
+        },
+        "timestamp": "2024-12-09T11:41:40.150515"
     }
 }

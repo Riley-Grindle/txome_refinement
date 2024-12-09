@@ -1,0 +1,2 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	5d/ab839a	22503	AGAT_CONVERTSPGXF2GXF (TEST)	COMPLETED	0	2024-12-09 12:11:36.323	1m 56s	1m 54s	100.6%	402.6 MB	953.8 MB	88.4 MB	100.4 MB
