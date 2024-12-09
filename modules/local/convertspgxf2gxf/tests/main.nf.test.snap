@@ -1,4 +1,19 @@
 {
+    "AGAT - TEST - v0.0.1": {
+        "content": [
+            [
+                "TEST.agat.gtf:md5,a7f03b8419af2671f12c94232e722834"
+            ],
+            [
+                "versions.yml:md5,1e3edd44aa557b48faad7e17277a149b"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.2"
+        },
+        "timestamp": "2024-12-09T12:47:30.450915"
+    },
     "GTF Format | AGAT | TEST": {
         "content": [
             [
