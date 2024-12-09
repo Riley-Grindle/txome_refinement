@@ -544,7 +544,7 @@ workflow RNASEQ_TRANSCRIPTOME_UPDATE {
     // MODULE: STRINGTIE_STRINGTIE
     //
     STRINGTIE_STRINGTIE (
-        SAMTOOLS_SORT.out.bam,
+        SAMTOOLS_SORT_PREP_INDEX.out.bam,
         PREPARE_GENOME.out.gtf
     )
     ch_versions = ch_versions.mix(STRINGTIE_STRINGTIE.out.versions.first())
