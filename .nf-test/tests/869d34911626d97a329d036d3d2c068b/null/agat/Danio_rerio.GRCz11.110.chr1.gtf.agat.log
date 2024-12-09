@@ -1,4 +1,4 @@
-                            12/09/2024 at 17h45m35s                             
+                            12/09/2024 at 19h19m07s                             
 
 
  ------------------------------------------------------------------------------
@@ -37,11 +37,11 @@ We filter the ontology to apply this rule.		We found 1861 terms that are sequenc
 => Number of feature type (3rd column): 8
 	* Level1: 1 => gene
 	* level2: 1 => transcript
-	* level3: 6 => exon CDS five_prime_utr three_prime_utr start_codon stop_codon
+	* level3: 6 => stop_codon CDS start_codon five_prime_utr three_prime_utr exon
 	* unknown: 0 => 
 => Version of the Bioperl GFF parser selected by AGAT: 2
 
-                  ------ End parsing (done in 81 second) ------                 
+                  ------ End parsing (done in 77 second) ------                 
 
 
                            ------ Start checks ------                           
@@ -92,7 +92,7 @@ No level2 locations modified
 No UTRs created
 No UTRs locations modified
 No supernumerary UTRs removed
------------------------------- done in 1 seconds -------------------------------
+------------------------------ done in 2 seconds -------------------------------
 
 ------------------------ Check11: all level2 locations -------------------------
 No problem found
@@ -100,11 +100,11 @@ No problem found
 
 ------------------------ Check12: all level1 locations -------------------------
 No problem found
------------------------------- done in 1 seconds -------------------------------
+------------------------------ done in 0 seconds -------------------------------
 
 ---------------------- Check13: remove identical isoforms ----------------------
 None found
------------------------------- done in 0 seconds -------------------------------
-                  ------ End checks (done in 13 second) ------                  
+------------------------------ done in 1 seconds -------------------------------
+                  ------ End checks (done in 14 second) ------                  
 
 
