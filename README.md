@@ -14,7 +14,7 @@
 
 **nf-core/txmupdate** is a bioinformatics pipeline that can be used refine reference transcriptome annotations utilizing RNA sequencing data. It takes a samplesheet and FASTQ files as input, performs quality control (QC), trimming and STAR alignment, BAM processing and normalization, and a GFF comparison/insertion step.
 
-![nf-core/txmupdate metro map](docs/images/tx_ome_pipeline_subway_map.png)
+![nf-core/txmupdate metro map](docs/images/tx_ome_pipeline_subway_map.pdf)
 
 0. Standardize GTF/GFF input format [`AGAT`](https://github.com/NBISweden/AGAT)
 1. Merge re-sequenced FastQ files ([`cat`](http://www.linfo.org/cat.html))
